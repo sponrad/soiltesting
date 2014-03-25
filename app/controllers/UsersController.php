@@ -60,6 +60,18 @@ class UsersController extends BaseController {
         return Redirect::to('/home')->with('message', 'Project created');
     }
 
+    public function getProject($projectId, $projectName){
+        $user = Auth::user();
+        $project = Project::find($projectId);
+        $tests = Test::where("project_id", "=", $project->id)->get();
+        
+        return View::make('users.project')->with(
+            array(
+                "project" => $project,
+                "tests" => $tests,
+            ));
+    }
+
     public function getFolder($folderId, $folderName){
         $user = Auth::user();
         $folder = Folder::find($folderId);

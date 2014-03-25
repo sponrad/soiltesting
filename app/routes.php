@@ -21,7 +21,8 @@ Route::get('/logout', 'UsersController@getLogout');
 
 Route::get('/home', 'UsersController@getHome');
 Route::post('/home', 'UsersController@postHome');
-Route::get('/home/{folderId}-{folderName}', 'UsersController@getFolder');
+
+Route::get('/home/{projectId}-{projectName}', 'UsersController@getProject');
 
 Route::post('/upload/{folderId}', 'UploadController@postUploads');
 Route::get('/upload', function(){ return "use POST"; });
