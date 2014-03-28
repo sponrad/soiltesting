@@ -5,9 +5,12 @@ class UsersController extends BaseController {
 
     public function __construct(){
         $this->beforeFilter('csrf', array('on'=>'post'));
-        $this->beforeFilter('auth', array('only'=> array('getHome')));
-        $this->beforeFilter('auth', array('only'=> array('getProject')));
-        $this->beforeFilter('auth', array('only'=> array('getSettings')));
+        $this->beforeFilter('auth', array('only'=> array(
+            'getHome',
+            'getProject',
+            'postProject',
+            'getSettings',
+        )));
     }
 
     public function getRegister() {
@@ -65,12 +68,37 @@ class UsersController extends BaseController {
         $user = Auth::user();
         $project = Project::find($projectId);
         $tests = Test::where("project_id", "=", $project->id)->get();
+        $proctors = Proctor::where("project_id", "=", $project->id)->get();
         
         return View::make('users.project')->with(
             array(
                 "project" => $project,
                 "tests" => $tests,
+                "proctors" => $proctors,
             ));
+    }
+
+    public function postProject($projectId, $projectName){
+        $user = Auth::user();
+        $project = Project::find($projectId);
+
+        $action = Input::get('action');
+
+        if ($action == "createproctor"){
+            $user = Auth::user();
+            $proctor = new Proctor;
+            $proctor->project()->associate($project);
+            $proctor->name = Input::get('name');
+            $proctor->description = Input::get('description');
+            //$proctor->date = Input::get('date');
+            $proctor->density_dry = Input::get('density_dry');
+            $proctor->percent_moisture = Input::get('percent_moisture');
+            $proctor->density_wet = $proctor->density_dry * (1 + $proctor->percent_moisture/100);
+            $proctor->save();
+
+            return Redirect::to('/home/'.$project->id.'-'.$project->name)->with('message', 'Project created');
+        }
+
     }
 
     public function getFolder($folderId, $folderName){
