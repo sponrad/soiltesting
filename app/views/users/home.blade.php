@@ -6,11 +6,23 @@
 @stop
 
 @section('underbody')
-
+  <style>
+   .projectLink{
+     display: inline-block;
+     width: 150px;
+     height: 150px;
+     padding: 15px;
+     margin: 5px;
+     text-align: center;
+     border: solid 1px gray;
+     background: #eeeeff;
+     color: black;
+   }
+  </style>
 @stop
 
 @section('content')
-  <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="float: right;">New Project</button>
+  <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="">New Project</button> <br><br>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -32,8 +44,7 @@
   
   @if (count($projects) > 0)
     @foreach($projects as $key => $project)
-      <br>
-      <a href="/home/{{ $project->id }}-{{ $project->name }}">{{ $project->name }}</a>
+      <a class="projectLink" href="/home/{{ $project->id }}-{{ $project->name }}">{{ $project->name }}</a>
     @endforeach
   @endif
 @stop

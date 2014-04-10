@@ -68,7 +68,7 @@
 
       <!-- CONTENT -->    
 
-      <div class="container">
+      <div class="container" id="maincontainer">
 	@yield('content')
       </div>
     </div>

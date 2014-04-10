@@ -10,6 +10,8 @@ class UsersController extends BaseController {
             'getProject',
             'postProject',
             'getSettings',
+            'getProjectTests',
+            'getProjectFiles'
         )));
     }
 
@@ -99,6 +101,28 @@ class UsersController extends BaseController {
             return Redirect::to('/home/'.$project->id.'-'.$project->name)->with('message', 'Project created');
         }
 
+    }
+
+    public function getProjectTests($projectId, $projectName){
+        $user = Auth::user();
+        $project = Project::find($projectId);
+        $tests = Test::where("project_id", "=", $project->id)->get();
+        
+        return View::make('users.projecttests')->with(
+            array(
+                "project" => $project,
+                "tests" => $tests,
+            ));
+    }
+
+    public function getProjectFiles($projectId, $projectName){
+        $user = Auth::user();
+        $project = Project::find($projectId);        
+        
+        return View::make('users.projectfiles')->with(
+            array(
+                "project" => $project,       
+            ));
     }
 
     public function getFolder($folderId, $folderName){

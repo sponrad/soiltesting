@@ -27,7 +27,7 @@
 
     <div class="col-md-6">
       <h3>Recent Files</h3>
-      <p>Files</p>
+      <p>No Files</p>
     </div>
   </div>
 

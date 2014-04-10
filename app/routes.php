@@ -25,6 +25,9 @@ Route::post('/home', 'UsersController@postHome');
 Route::get('/home/{projectId}-{projectName}', 'UsersController@getProject');
 Route::post('/home/{projectId}-{projectName}', 'UsersController@postProject');
 
+Route::get('/home/{projectId}-{projectName}/tests', 'UsersController@getProjectTests');
+Route::get('/home/{projectId}-{projectName}/files', 'UsersController@getProjectFiles');
+
 Route::post('/upload/{folderId}', 'UploadController@postUploads');
 Route::get('/upload', function(){ return "use POST"; });
 
