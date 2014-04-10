@@ -10,12 +10,7 @@
 @stop
 
 @section('content')
-  <input type="text" placeholder="Search" style="float: right;" />
-  <h3 style="margin-top:0px;">{{ Auth::user()->account->companyname }}</h3>  
-
   <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="float: right;">New Project</button>
-
-  <a href="/home">Home</a><br>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">

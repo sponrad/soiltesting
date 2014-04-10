@@ -1,8 +1,6 @@
 @extends('main')
 
 @section('underheader')
-  <link rel="stylesheet" href="js/jqfu9.5.7/css/jquery.fileupload.css">
-  <link rel="stylesheet" href="js/jqfu9.5.7/css/jquery.fileupload-ui.css">
 @stop
 
 @section('underbody')
@@ -10,20 +8,30 @@
 @stop
 
 @section('content')
-  <input type="text" placeholder="Search" style="float: right;" />
-  <h3 style="margin-top:0px;">{{ Auth::user()->account->companyname }}</h3>
+  <h2>{{ $project->name }}</h2>
 
-  <h3>{{ $project->name }}  </h3>
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="/home/{{ $project->id}}-{{$project->name}}">Overview</a></li>
+    <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}/tests">Tests</a></li>
+    <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}/files">Files</a></li>
+  </ul>
 
-  <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="float: right;">Add a Test</button>
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Project Information</h3>
+      <p>Project Name</p>
+      <p>Contact Information</p>
+      <p>Important notes</p>
+      <a href="">Link to edit</a>
+    </div>
 
-  <a href="/home/{{ $project->id}}-{{$project->name}}">Dashboard</a> | 
-  <a href="/home/{{ $project->id}}-{{$project->name}}">Map</a> | 
-  <a href="/home/{{ $project->id}}-{{$project->name}}">Tests</a> | 
-  <a href="/home/{{ $project->id}}-{{$project->name}}">Pictures</a> | 
-  <a href="/home/{{ $project->id}}-{{$project->name}}">Project Settings</a>
+    <div class="col-md-6">
+      <h3>Recent Files</h3>
+      <p>Files</p>
+    </div>
+  </div>
 
-  <br>
+  <h3>Recent Tests</h3>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -43,14 +51,11 @@
     </div>
   </div>
   
-  <h3>Recent Tests</h3>
-  
   @if (count($tests) > 0)
     <p>Link to view all tests</p>
   @else
     <p>No tests added yet.</p>
   @endif
-
 
   <h3>Proctors</h3>
 

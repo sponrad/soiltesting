@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DensityPro</title>
+    <title>DensityTestPro</title>
     {{ HTML::style('/css/bootstrap.min.css') }}
     {{ HTML::style('/css/main.css') }}
     @yield('underheader')
@@ -22,7 +22,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">DensityPro</a>
+            <a class="navbar-brand" href="/">DensityTestPro</a>
           </div>
           <div class="navbar-collapse collapse">
 
@@ -41,6 +41,8 @@
 		<li>{{ HTML::link('/login', 'Sign In') }}</li>
 	      @else
 		<li><a href="/home">Home</a></li>
+		<li><a>{{ Auth::user()->account->companyname }}</a></li>
+		<li><a>Search</a></li>
 		<li><a href="">Settings</a></li>
 		<li><a href="/logout">Logout</a></li>
 		<!--
