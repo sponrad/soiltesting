@@ -11,7 +11,9 @@ class UsersController extends BaseController {
             'postProject',
             'getSettings',
             'getProjectTests',
-            'getProjectFiles'
+            'postProjectTests',
+            'getProjectFiles',
+            'postProjectFiles'
         )));
     }
 
@@ -107,12 +109,39 @@ class UsersController extends BaseController {
         $user = Auth::user();
         $project = Project::find($projectId);
         $tests = Test::where("project_id", "=", $project->id)->get();
+        $proctors = Proctor::where("project_id", "=", $project->id)->get();
         
         return View::make('users.projecttests')->with(
             array(
                 "project" => $project,
                 "tests" => $tests,
+                "proctors" => $proctors,
             ));
+    }
+
+    public function postProjectTests($projectId, $projectName){
+        $user = Auth::user();
+        $project = Project::find($projectId);
+        $action = Input::get("action");
+
+        if ($action == "createtest"){
+            $user = Auth::user();
+            $test = new Test;
+            $test->project()->associate($project);
+            $test->density_wet = Input::get('density_wet');
+            $test->density_dry = Input::get('density_dry');
+            $test->percent_moisture = Input::get('percent_moisture');
+            $test->compaction_percent = Input::get('compaction_percent');
+            $proctor = Proctor::find( intval(Input::get('proctor')) );
+            $test->proctor()->associate( $proctor );
+            $test->elevation = Input::get('elevation');
+            $test->location = Input::get('location');
+            $test->notes = Input::get('notes');
+
+            $test->save();
+
+            return Redirect::to('/home/'.$project->id.'-'.$project->name.'/tests')->with('message', 'Test Added');
+        }
     }
 
     public function getProjectFiles($projectId, $projectName){

@@ -26,31 +26,13 @@
     </div>
 
     <div class="col-md-6">
-      <h3>Recent Files</h3>
+      <h3>Recent Files <a href="/home/{{ $project->id}}-{{$project->name}}/files"><small>(see all)</small></a></h3>
       <p>No Files</p>
     </div>
   </div>
 
-  <h3>Recent Tests</h3>
+  <h3>Recent Tests <a href="/home/{{ $project->id}}-{{$project->name}}/tests"><small>(see all)</small></a></h3>
 
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-	<div class="modal-header">
-	  <h2>New Test</h2>
-	</div>
-	<div class="modal-body">
-	  {{ Form::open(array('url'=>'/home', 'class'=>'form-new-test')) }}
-	  {{ Form::hidden('action', 'createtest') }}
-	  {{ Form::text('testname', null, array('class'=>'input-block-level', 'placeholder'=>'Test Name')) }}
-	  <br>
-	  {{ Form::submit('Create', array('class'=>'btn btn-large btn-primary')) }}
-	  {{ Form::close() }}
-	</div>
-      </div>
-    </div>
-  </div>
-  
   @if (count($tests) > 0)
     <p>Link to view all tests</p>
   @else

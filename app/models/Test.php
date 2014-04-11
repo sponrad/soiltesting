@@ -3,7 +3,7 @@
 class Test extends Eloquent{
     protected $table = 'tests';
 
-    public function proctors(){
+    public function proctor(){
         return $this->belongsTo('Proctor', 'proctor_id');
     }
 
