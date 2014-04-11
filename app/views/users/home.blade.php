@@ -17,6 +17,7 @@
      border: solid 1px gray;
      background: #eeeeff;
      color: black;
+     float: left;
    }
   </style>
 @stop
