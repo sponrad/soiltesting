@@ -37,7 +37,7 @@
 
             <ul class="nav navbar-nav navbar-right">
               @if(!Auth::check())
-		<li>{{ HTML::link('/register', 'Register') }}</li>   
+<!--		<li>{{ HTML::link('/register', 'Register') }}</li>   -->
 		<li>{{ HTML::link('/login', 'Sign In') }}</li>
 	      @else
 		<li><a href="/home">Home</a></li>

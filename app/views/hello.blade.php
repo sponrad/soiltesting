@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <title>DensityPro</title>
+    <title>DensityTestPro</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -65,7 +65,7 @@
        width: 100%;
        height: 100%; /* For at least Firefox */
        min-height: 100%;
-       background-color: rgba(0, 0, 0, 0.25);
+       background-color: rgba(0, 0, 0, 0.1);
      }
      .site-wrapper-inner {
        display: table-cell;
@@ -197,7 +197,7 @@
 
           <div class="masthead clearfix">
             <div class="inner">
-              <h3 class="masthead-brand" style="font-family: Lucida Sans Unicode;">DensityPro</h3>
+              <h3 class="masthead-brand" style="font-family: Lucida Sans Unicode;">DensityTestPro</h3>
               <ul class="nav masthead-nav">
 		@if(!Auth::check())
                 <li class="active"><a href="#">Home</a></li>
@@ -213,15 +213,17 @@
           </div>
 
           <div class="inner cover">
-            <h1 class="cover-heading">DensityPro</h1>
+            <h1 class="cover-heading">Cloud-based Software for Soil Technicians</h1>
             <p class="lead">Density test organization and storage</p>
-	    <p>Digitize tests as they are taken.</p>
+	    <p>Digitize density tests as they are taken.</p>
+	    <p>Store data and files for multiple projects.</p>
 	    <p>Output beautiful reports.</p>
-	    <p>View, search, further organize, and download density tests at any time.</p><br>
+	    <p>Access any time from any device.</p><br>
 	    <p>Simple payment plans and hosted on technology that is used by major companies worldwide.</p>
-            <p class="lead">
-	      <a href="/register" class="btn btn-lg btn-default">Register</a> 
-            </p>
+	    <p class="lead">
+	      <span class="btn btn-lg btn-default">Contact conrad@devlabtech.com for more information</span>
+	    </p>
+	    <p>Currently in developement.</p>
           </div>
 
           <div class="mastfoot">
