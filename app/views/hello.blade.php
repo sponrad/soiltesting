@@ -65,7 +65,7 @@
        width: 100%;
        height: 100%; /* For at least Firefox */
        min-height: 100%;
-       background-color: rgba(0, 0, 0, 0.1);
+       background-color: rgba(0, 0, 0, 0.2);
      }
      .site-wrapper-inner {
        display: table-cell;
@@ -213,13 +213,13 @@
           </div>
 
           <div class="inner cover">
-            <h1 class="cover-heading">Cloud-based Software for Soil Technicians</h1>
+            <h1 class="cover-heading">Cloud-based Software for Engineers</h1>
             <p class="lead">Density test organization and storage</p>
 	    <p>Digitize density tests as they are taken.</p>
 	    <p>Store data and files for multiple projects.</p>
 	    <p>Output beautiful reports.</p>
 	    <p>Access any time from any device.</p><br>
-	    <p>Simple payment plans and hosted on technology that is used by major companies worldwide.</p>
+	    <p>Simple payment plans and built with technology used by major companies worldwide.</p>
 	    <p class="lead">
 	      <span class="btn btn-lg btn-default">Contact conrad@devlabtech.com for more information</span>
 	    </p>
