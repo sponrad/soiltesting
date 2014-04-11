@@ -110,12 +110,6 @@
   </div>
   
   @if (count($tests) > 0)
-    <p>Link to view all tests</p>
-  @else
-    <p>No tests added yet.</p>
-  @endif
-  
-  @if (count($tests) > 0)
     <table class="table">
       <tr>
 	<th>No.</th>
@@ -126,7 +120,7 @@
       </tr>
       @foreach($tests as $key => $test)
 	<tr>
-	  <td>{{ $key }}</td>
+	  <td>{{ $key+1 }}</td>
 	  <td>{{ number_format($test->density_dry, 1) }}</td>
 	  <td>{{ number_format($test->percent_moisture, 1) }}</td>
 	  <td>{{ number_format($test->compaction_percent, 1) }}</td>
@@ -134,5 +128,7 @@
 	</tr>
     @endforeach
     </table>
+  @else
+    <p>No tests added yet.</p>
   @endif
 @stop
