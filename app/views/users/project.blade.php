@@ -49,7 +49,7 @@
       </tr>
       @foreach($tests as $key => $test)
 	<tr>
-	  <td>{{ $key+1 }}</td>
+	  <td>{{ $test->number }}</td>
 	  <td>{{ number_format($test->density_dry, 1) }}</td>
 	  <td>{{ number_format($test->percent_moisture, 1) }}</td>
 	  <td>{{ number_format($test->percent_compaction(), 1) }}</td>

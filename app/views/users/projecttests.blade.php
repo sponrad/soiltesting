@@ -148,6 +148,7 @@
     <table class="table">
       <tr>
 	<th>No.</th>
+	<th>Location</th>
 	<th>Dry Dens.</th>
 	<th>m%</th>
 	<th>rel. %</th>
@@ -155,7 +156,8 @@
       </tr>
       @foreach($tests as $key => $test)
 	<tr>
-	  <td>{{ $key+1 }}</td>
+	  <td>{{ $test->number }}</td>
+	  <td>{{ $test->location }}</td>
 	  <td>{{ number_format($test->density_dry, 1) }}</td>
 	  <td>{{ number_format($test->percent_moisture, 1) }}</td>
 	  <td>{{ number_format($test->percent_compaction(), 1) }}</td>

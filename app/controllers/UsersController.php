@@ -71,7 +71,7 @@ class UsersController extends BaseController {
     public function getProject($projectId, $projectName){
         $user = Auth::user();
         $project = Project::find($projectId);
-        $tests = Test::where("project_id", "=", $project->id)->get();
+        $tests = Test::where("project_id", "=", $project->id)->orderBy("number", "DESC")->take(5)->get();
         $proctors = Proctor::where("project_id", "=", $project->id)->get();
         
         return View::make('users.project')->with(
@@ -108,7 +108,7 @@ class UsersController extends BaseController {
     public function getProjectTests($projectId, $projectName){
         $user = Auth::user();
         $project = Project::find($projectId);
-        $tests = Test::where("project_id", "=", $project->id)->get();
+        $tests = Test::where("project_id", "=", $project->id)->orderBy("number", "DESC")->get();
         $proctors = Proctor::where("project_id", "=", $project->id)->get();
         
         return View::make('users.projecttests')->with(
@@ -136,6 +136,7 @@ class UsersController extends BaseController {
             $test->elevation = Input::get('elevation');
             $test->location = Input::get('location');
             $test->notes = Input::get('notes');
+            $test->number = Test::where("project_id", "=", $project->id)->count() + 1;
 
             $test->save();
 
