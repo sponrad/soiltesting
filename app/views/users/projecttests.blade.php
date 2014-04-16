@@ -31,6 +31,13 @@
 	  {{ Form::hidden('action', 'createtest') }}
 
 	  <div class="form-group">
+	    <label for="elevation" class="col-sm-3 control-label">Elevation</label>
+	    <div class="col-sm-9">
+	      {{ Form::text('elevation', null, array('class'=>'form-control', 'placeholder'=>'elevation')) }}
+	    </div>
+	  </div>
+
+	  <div class="form-group">
 	    <label for="density_wet" class="col-sm-3 control-label">Wet Density</label>
 	    <div class="col-sm-9">
 	      {{ Form::text('density_wet', null, array('class'=>'form-control', 'placeholder'=>'density_wet')) }}
@@ -70,33 +77,11 @@
 	  </div>
 
 	  <div class="form-group">
-	    <label for="elevation" class="col-sm-3 control-label">Elevation</label>
-	    <div class="col-sm-9">
-	      {{ Form::text('elevation', null, array('class'=>'form-control', 'placeholder'=>'elevation')) }}
-	    </div>
-	  </div>
-
-	  <div class="form-group">
 	    <label for="location" class="col-sm-3 control-label">Location</label>
 	    <div class="col-sm-9">
 	      {{ Form::text('location', null, array('class'=>'form-control', 'placeholder'=>'location')) }}
 	    </div>
 	  </div>
-
-	  <div class="form-group">
-	    <label for="notes" class="col-sm-3 control-label">Notes</label>
-	    <div class="col-sm-9">
-	      {{ Form::text('notes', null, array('class'=>'form-control', 'placeholder'=>'notes')) }}
-	    </div>
-	  </div>
-
-	  <div class="form-group">
-	    <label for="date" class="col-sm-3 control-label">Date</label>
-	    <div class="col-sm-9">
-	      {{ Form::text('date', null, array('class'=>'form-control', 'placeholder'=>'date')) }}
-	    </div>
-	  </div>
-
 
 	  <div class="form-group">
 	    <div class="col-sm-offset-3 col-sm-9">

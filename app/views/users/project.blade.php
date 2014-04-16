@@ -35,8 +35,26 @@
 
   <h3>Recent Tests <a href="/home/{{ $project->id}}-{{$project->name}}/tests"><small>(see all)</small></a></h3>
 
+
   @if (count($tests) > 0)
-    <p>Link to view all tests</p>
+    <table class="table">
+      <tr>
+	<th>No.</th>
+	<th>Dry Dens.</th>
+	<th>m%</th>
+	<th>rel. %</th>
+	<th>Max.</th>
+      </tr>
+      @foreach($tests as $key => $test)
+	<tr>
+	  <td>{{ $key+1 }}</td>
+	  <td>{{ number_format($test->density_dry, 1) }}</td>
+	  <td>{{ number_format($test->percent_moisture, 1) }}</td>
+	  <td>{{ number_format($test->compaction_percent, 1) }}</td>
+	  <td>{{ number_format($test->proctor->density_dry, 1) }}</td>
+	</tr>
+    @endforeach
+    </table>
   @else
     <p>No tests added yet.</p>
   @endif
@@ -94,11 +112,5 @@
       </div>
     </div>
   </div>
-  
-  @if (count($tests) > 0)
-    @foreach($tests as $key => $test)
-      <br>
-      <a href="/home/{{ $test->id }}-{{ $test->name }}">{{ $test->number }}</a>
-    @endforeach
-  @endif
+
 @stop
