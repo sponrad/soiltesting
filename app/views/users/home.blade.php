@@ -1,5 +1,10 @@
 @extends('main')
 
+@section('brandlink')
+  <a class="navbar-brand" href="/home">{{ Auth::user()->account->companyname }}</a>  
+
+@stop
+
 @section('underheader')
   <link rel="stylesheet" href="js/jqfu9.5.7/css/jquery.fileupload.css">
   <link rel="stylesheet" href="js/jqfu9.5.7/css/jquery.fileupload-ui.css">
@@ -9,7 +14,9 @@
   <style>
    .projectLink{
      display: inline-block;
-     width: 150px;
+     max-width: 150px;
+     min-width: 50px; 
+     width: 40%;
      height: 150px;
      padding: 15px;
      margin: 5px;

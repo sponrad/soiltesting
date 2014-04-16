@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <title>DensityTestPro</title>
+    <title>DensityPro</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -197,7 +197,7 @@
 
           <div class="masthead clearfix">
             <div class="inner">
-              <h3 class="masthead-brand" style="font-family: Lucida Sans Unicode;">DensityTestPro</h3>
+              <h3 class="masthead-brand" style="font-family: Lucida Sans Unicode;">DensityPro</h3>
               <ul class="nav masthead-nav">
 		@if(!Auth::check())
                 <li class="active"><a href="#">Home</a></li>
@@ -213,7 +213,7 @@
           </div>
 
           <div class="inner cover">
-            <h1 class="cover-heading">Cloud-based Software for Engineers</h1>
+            <h1 class="cover-heading">Log Density Tests in the Cloud</h1>
             <p class="lead">Density test organization and storage</p>
 	    <p>Digitize density tests as they are taken.</p>
 	    <p>Store data and files for multiple projects.</p>
@@ -221,7 +221,7 @@
 	    <p>Access any time from any device.</p><br>
 	    <p>Simple payment plans and built with technology used by major companies worldwide.</p>
 	    <p class="lead">
-	      <span class="btn btn-lg btn-default">Contact conrad@devlabtech.com for more information</span>
+	      <span class="">Contact conrad@devlabtech.com for more information</span>
 	    </p>
 	    <p>Currently in developement.</p>
           </div>

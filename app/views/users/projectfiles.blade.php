@@ -1,5 +1,9 @@
 @extends('main')
 
+@section('brandlink')
+  <a class="navbar-brand" href="/home">{{$project->name}}</a>
+@stop
+
 @section('underheader')
   <link rel="stylesheet" href="/js/jqfu9.5.7/css/jquery.fileupload.css">
   <link rel="stylesheet" href="/js/jqfu9.5.7/css/jquery.fileupload-ui.css">@stop
@@ -41,8 +45,6 @@
   @stop
 
   @section('content')
-    <h2>{{ $project->name }}</h2>
-
     <ul class="nav nav-tabs">
       <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}">Overview</a></li>
       <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}/tests">Tests</a></li>

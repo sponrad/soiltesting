@@ -1,5 +1,9 @@
 @extends('main')
 
+@section('brandlink')
+  <a class="navbar-brand" href="/home">{{$project->name}}</a>
+@stop
+
 @section('underheader')
 @stop
 
@@ -8,8 +12,6 @@
 @stop
 
 @section('content')
-  <h2>{{ $project->name }}</h2>
-
   <ul class="nav nav-tabs">
     <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}">Overview</a></li>
     <li class="active"><a href="/home/{{ $project->id}}-{{$project->name}}/tests">Tests</a></li>
