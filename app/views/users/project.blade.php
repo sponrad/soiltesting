@@ -15,7 +15,7 @@
   <ul class="nav nav-tabs">
     <li class="active"><a href="/home/{{ $project->id}}-{{$project->name}}">Overview</a></li>
     <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}/tests">Tests</a></li>
-    <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}/files">Files</a></li>
+    <!-- <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}/files">Files</a></li>  -->
   </ul>
 
   <div class="row">
@@ -26,11 +26,13 @@
       <p>Important notes</p>
       <a href="">Link to edit</a>
     </div>
-
+    
+    <!-- 
     <div class="col-md-6">
       <h3>Recent Files <a href="/home/{{ $project->id}}-{{$project->name}}/files"><small>(see all)</small></a></h3>
       <p>No Files</p>
     </div>
+    -->
   </div>
 
   <h3>Recent Tests <a href="/home/{{ $project->id}}-{{$project->name}}/tests"><small>(see all)</small></a></h3>
@@ -50,7 +52,7 @@
 	  <td>{{ $key+1 }}</td>
 	  <td>{{ number_format($test->density_dry, 1) }}</td>
 	  <td>{{ number_format($test->percent_moisture, 1) }}</td>
-	  <td>{{ number_format($test->compaction_percent, 1) }}</td>
+	  <td>{{ number_format($test->percent_compaction(), 1) }}</td>
 	  <td>{{ number_format($test->proctor->density_dry, 1) }}</td>
 	</tr>
     @endforeach

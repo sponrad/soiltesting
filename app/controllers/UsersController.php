@@ -131,7 +131,6 @@ class UsersController extends BaseController {
             $test->density_wet = Input::get('density_wet');
             $test->density_dry = Input::get('density_dry');
             $test->percent_moisture = Input::get('percent_moisture');
-            $test->compaction_percent = Input::get('compaction_percent');
             $proctor = Proctor::find( intval(Input::get('proctor')) );
             $test->proctor()->associate( $proctor );
             $test->elevation = Input::get('elevation');

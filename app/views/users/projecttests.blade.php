@@ -8,84 +8,132 @@
 @stop
 
 @section('underbody')
+  <script>
+ $(document).ready( function(){
+     $('#myModal').on('shown.bs.modal', function () {
+       $('#elevationInput').focus();
+     })
 
+     //fires when wet, dry, or moisture have been changed.
+     $("#density_wet, #density_dry, #percent_moisture").change(
+       function(e){
+	 //check if moisture has a val if not exit
+	 if ( $("#percent_moisture").val() == ""){
+	   return
+	 }
+	 var proceed = false;
+	 //check if wet or dry are calling this
+	 if (e.target.id == "density_dry"){
+	   proceed = true;
+	   starter = "density_dry";
+	 }
+	 if (e.target.id == "density_wet"){
+	   proceed = true;
+	   starter = "density_wet";
+	 }
+	 if (e.target.id == "percent_moisture"){
+	   if ($("#density_wet").val() != ""){
+	     starter = "density_wet";
+	     proceed = true;	     
+	   }
+	   else if ($("#density_dry").val() != ""){
+	     starter = "density_dry";
+	     proceed = true;
+	   }
+	 }
+	 if (proceed){
+	   //updates relative density, and one of wet or dry density (opposite of the one firing the event
+	   if (starter == "density_wet"){
+	     density_dry = $("#density_wet").val() / (1 + ( $("#percent_moisture").val() / 100 ));
+	     $("#density_dry").val( density_dry.toFixed(1) );
+	   }
+	   else {
+	     density_wet = $("#density_dry").val() * (1 + ( $("#percent_moisture").val() / 100 ));
+	     $("#density_wet").val( density_wet.toFixed(1) );
+	   }
+
+	   compaction_percent = $("#density_dry").val() / $("#proctorInput").find(":selected").attr("id") * 100;
+	   $("#compaction_percent").val(compaction_percent.toFixed(1));
+	 }
+       });
+
+     $("#proctorInput").change( function(){
+       compaction_percent = $("#density_dry").val() / $("#proctorInput").find(":selected").attr("id") * 100;
+       $("#compaction_percent").val(compaction_percent.toFixed(1));
+     })
+    
+   });
+  </script>
 @stop
 
 @section('content')
   <ul class="nav nav-tabs">
     <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}">Overview</a></li>
     <li class="active"><a href="/home/{{ $project->id}}-{{$project->name}}/tests">Tests</a></li>
-    <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}/files">Files</a></li>
+    <!-- <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}/files">Files</a></li> -->
   </ul>
   
-  <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">New Test</button>
+  <button id="newTestButton" class="btn btn-primary" data-toggle="modal" data-target="#myModal">New Test</button>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-	<div class="modal-header">
-	  <h2>New Test</h2>
-	</div>
 	<div class="modal-body">	  
 	  {{ Form::open(array('url'=>'/home/'.$project->id.'-'.$project->name.'/tests', 'class'=>'form-horizontal', 'role'=>'form')) }}	  
 	  {{ Form::hidden('action', 'createtest') }}
+	  {{ Form::hidden('notes', ' ') }}
 
 	  <div class="form-group">
-	    <label for="elevation" class="col-sm-3 control-label">Elevation</label>
-	    <div class="col-sm-9">
-	      {{ Form::text('elevation', null, array('class'=>'form-control', 'placeholder'=>'elevation')) }}
+	    <label for="elevation" class="col-sm-4 ">Elevation</label>
+	    <label for="density_wet" class="col-sm-4 col-sm-offset-2">Wet Density</label>
+
+	    <div class="col-sm-4">
+	      {{ Form::text('elevation', null, array('class'=>'form-control', 'placeholder'=>'elevation', 'id'=>'elevationInput')) }}
+	    </div>
+	    <div class="col-sm-4 col-sm-offset-2">
+	      {{ Form::text('density_wet', null, array('class'=>'form-control', 'placeholder'=>'density_wet', 'id'=>'density_wet')) }}
 	    </div>
 	  </div>
 
 	  <div class="form-group">
-	    <label for="density_wet" class="col-sm-3 control-label">Wet Density</label>
-	    <div class="col-sm-9">
-	      {{ Form::text('density_wet', null, array('class'=>'form-control', 'placeholder'=>'density_wet')) }}
+	    <label for="density_dry" class="col-sm-4">Dry Density</label>
+	    <label for="percent_moisture" class="col-sm-4 col-sm-offset-2">Moisture %</label>
+
+	    <div class="col-sm-4">
+	      {{ Form::text('density_dry', null, array('class'=>'form-control', 'placeholder'=>'density_dry', 'id'=>'density_dry')) }}
+	    </div>
+	    <div class="col-sm-4 col-sm-offset-2">
+	      {{ Form::text('percent_moisture', null, array('class'=>'form-control', 'placeholder'=>'percent_moisture', 'id'=>'percent_moisture')) }}
 	    </div>
 	  </div>
 
 	  <div class="form-group">
-	    <label for="density_dry" class="col-sm-3 control-label">Dry Density</label>
-	    <div class="col-sm-9">
-	      {{ Form::text('density_dry', null, array('class'=>'form-control', 'placeholder'=>'density_dry')) }}
-	    </div>
-	  </div>
+	    <label for="proctor" class="col-sm-4">Proctor</label>
+	    <label for="compaction_percent" class="col-sm-4 col-sm-offset-2">Compaction %</label>
 
-	  <div class="form-group">
-	    <label for="percent_moisture" class="col-sm-3 control-label">Moisture %</label>
-	    <div class="col-sm-9">
-	      {{ Form::text('percent_moisture', null, array('class'=>'form-control', 'placeholder'=>'percent_moisture')) }}
-	    </div>
-	  </div>
-
-	  <div class="form-group">
-	    <label for="proctor" class="col-sm-3 control-label">Proctor</label>
-	    <div class="col-sm-9">
-	      <select class="form-control" name="proctor">
+	    <div class="col-sm-4">
+	      <select class="form-control" name="proctor" id="proctorInput">
 		@foreach($proctors as $key => $proctor)
-		  <option id="{{$proctor->id}}" value="{{$proctor->id}}">{{ number_format($proctor->density_dry, 1) }} @ {{ number_format($proctor->percent_moisture, 1) }}% - {{$proctor->name}}</option>
+		  <option id="{{ number_format($proctor->density_dry, 1) }}" value="{{$proctor->id}}">{{ number_format($proctor->density_dry, 1) }} @ {{ number_format($proctor->percent_moisture, 1) }}% - {{$proctor->name}}</option>
 		@endforeach
 	      </select>
 	    </div>
-	  </div>
-
-	  <div class="form-group">
-	    <label for="compaction_percent" class="col-sm-3 control-label">Compaction %</label>
-	    <div class="col-sm-9">
-	      {{ Form::text('compaction_percent', null, array('class'=>'form-control', 'placeholder'=>'compaction_percent')) }}
+	    <div class="col-sm-4 col-sm-offset-2">
+	      {{ Form::text('compaction_percent', null, array('class'=>'form-control', 'placeholder'=>'compaction_percent', 'id'=>'compaction_percent', 'disabled')) }}
 	    </div>
 	  </div>
 
 	  <div class="form-group">
-	    <label for="location" class="col-sm-3 control-label">Location</label>
-	    <div class="col-sm-9">
-	      {{ Form::text('location', null, array('class'=>'form-control', 'placeholder'=>'location')) }}
+	    <label for="location" class="col-sm-3">Location</label>
+	    <div class="col-sm-12">
+	      {{ Form::textarea('location', null, array('class'=>'form-control', 'placeholder'=>'location', 'size'=>'50x1')) }}
 	    </div>
 	  </div>
 
 	  <div class="form-group">
 	    <div class="col-sm-offset-3 col-sm-9">
 	      {{ Form::submit('Create', array('class'=>'btn btn-large btn-primary')) }}
+	      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 	    </div>
 	  </div>
 	  
@@ -110,7 +158,7 @@
 	  <td>{{ $key+1 }}</td>
 	  <td>{{ number_format($test->density_dry, 1) }}</td>
 	  <td>{{ number_format($test->percent_moisture, 1) }}</td>
-	  <td>{{ number_format($test->compaction_percent, 1) }}</td>
+	  <td>{{ number_format($test->percent_compaction(), 1) }}</td>
 	  <td>{{ number_format($test->proctor->density_dry, 1) }}</td>
 	</tr>
     @endforeach

@@ -48,7 +48,7 @@
     <ul class="nav nav-tabs">
       <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}">Overview</a></li>
       <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}/tests">Tests</a></li>
-      <li class="active"><a href="/home/{{ $project->id}}-{{$project->name}}/files">Files</a></li>
+      <!-- <li class="active"><a href="/home/{{ $project->id}}-{{$project->name}}/files">Files</a></li> -->
     </ul>
 
     <h3>Upload</h3>
