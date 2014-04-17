@@ -8,7 +8,10 @@
 @stop
 
 @section('underbody')
+@stop
 
+@section('navmenu')
+  <p class="navbar-text glyphicon glyphicon-check"></p>
 @stop
 
 @section('content')
