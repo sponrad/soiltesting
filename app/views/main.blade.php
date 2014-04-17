@@ -25,17 +25,14 @@
             @yield('brandlink')
           </div>
 
-
-	    @yield('navmenu')
-
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
               @if(!Auth::check())
 <!--		<li>{{ HTML::link('/register', 'Register') }}</li>   -->
 		<li>{{ HTML::link('/login', 'Sign In') }}</li>
 	      @else
+		@yield('navmenu')
 		<li><a href="/home">Home</a></li>
-		<li><a>Search</a></li>
 		<li><a href="">Settings</a></li>
 		<li><a href="/logout">Logout</a></li>
 		<!--

@@ -5,76 +5,21 @@
 @stop
 
 @section('underheader')
+  <style>
+   .hiddenRow {
+     padding: 0 !important;
+   }
+   tr.noborder td{
+     border-top: none !important;
+   }
+  </style>
+@stop
+
+@section('navmenu')
+  <li><button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-check"></span> Take Test</button></li>
 @stop
 
 @section('underbody')
-  <script>
- $(document).ready( function(){
-     $('#myModal').on('shown.bs.modal', function () {
-       $('#elevationInput').focus();
-     })
-
-     //fires when wet, dry, or moisture have been changed.
-     $("#density_wet, #density_dry, #percent_moisture").change(
-       function(e){
-	 //check if moisture has a val if not exit
-	 if ( $("#percent_moisture").val() == ""){
-	   return
-	 }
-	 var proceed = false;
-	 //check if wet or dry are calling this
-	 if (e.target.id == "density_dry"){
-	   proceed = true;
-	   starter = "density_dry";
-	 }
-	 if (e.target.id == "density_wet"){
-	   proceed = true;
-	   starter = "density_wet";
-	 }
-	 if (e.target.id == "percent_moisture"){
-	   if ($("#density_wet").val() != ""){
-	     starter = "density_wet";
-	     proceed = true;	     
-	   }
-	   else if ($("#density_dry").val() != ""){
-	     starter = "density_dry";
-	     proceed = true;
-	   }
-	 }
-	 if (proceed){
-	   //updates relative density, and one of wet or dry density (opposite of the one firing the event
-	   if (starter == "density_wet"){
-	     density_dry = $("#density_wet").val() / (1 + ( $("#percent_moisture").val() / 100 ));
-	     $("#density_dry").val( density_dry.toFixed(1) );
-	   }
-	   else {
-	     density_wet = $("#density_dry").val() * (1 + ( $("#percent_moisture").val() / 100 ));
-	     $("#density_wet").val( density_wet.toFixed(1) );
-	   }
-
-	   compaction_percent = $("#density_dry").val() / $("#proctorInput").find(":selected").attr("id") * 100;
-	   $("#compaction_percent").val(compaction_percent.toFixed(1));
-	 }
-       });
-
-     $("#proctorInput").change( function(){
-       compaction_percent = $("#density_dry").val() / $("#proctorInput").find(":selected").attr("id") * 100;
-       $("#compaction_percent").val(compaction_percent.toFixed(1));
-     })
-    
-   });
-  </script>
-@stop
-
-@section('content')
-  <ul class="nav nav-tabs">
-    <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}">Overview</a></li>
-    <li class="active"><a href="/home/{{ $project->id}}-{{$project->name}}/tests">Tests</a></li>
-    <!-- <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}/files">Files</a></li> -->
-  </ul>
-  
-  <button id="newTestButton" class="btn btn-primary" data-toggle="modal" data-target="#myModal">New Test</button>
-
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -143,7 +88,72 @@
       </div>
     </div>
   </div>
-  
+  <script>
+
+ $(document).ready( function(){
+     $('#myModal').on('shown.bs.modal', function () {
+       $('#elevationInput').focus();
+     })
+
+     //fires when wet, dry, or moisture have been changed.
+     $("#density_wet, #density_dry, #percent_moisture").change(
+       function(e){
+	 //check if moisture has a val if not exit
+	 if ( $("#percent_moisture").val() == ""){
+	   return
+	 }
+	 var proceed = false;
+	 //check if wet or dry are calling this
+	 if (e.target.id == "density_dry"){
+	   proceed = true;
+	   starter = "density_dry";
+	 }
+	 if (e.target.id == "density_wet"){
+	   proceed = true;
+	   starter = "density_wet";
+	 }
+	 if (e.target.id == "percent_moisture"){
+	   if ($("#density_wet").val() != ""){
+	     starter = "density_wet";
+	     proceed = true;	     
+	   }
+	   else if ($("#density_dry").val() != ""){
+	     starter = "density_dry";
+	     proceed = true;
+	   }
+	 }
+	 if (proceed){
+	   //updates relative density, and one of wet or dry density (opposite of the one firing the event
+	   if (starter == "density_wet"){
+	     density_dry = $("#density_wet").val() / (1 + ( $("#percent_moisture").val() / 100 ));
+	     $("#density_dry").val( density_dry.toFixed(1) );
+	   }
+	   else {
+	     density_wet = $("#density_dry").val() * (1 + ( $("#percent_moisture").val() / 100 ));
+	     $("#density_wet").val( density_wet.toFixed(1) );
+	   }
+
+	   compaction_percent = $("#density_dry").val() / $("#proctorInput").find(":selected").attr("id") * 100;
+	   $("#compaction_percent").val(compaction_percent.toFixed(1));
+	 }
+       });
+
+     $("#proctorInput").change( function(){
+       compaction_percent = $("#density_dry").val() / $("#proctorInput").find(":selected").attr("id") * 100;
+       $("#compaction_percent").val(compaction_percent.toFixed(1));
+     })
+    
+   });
+  </script>
+@stop
+
+@section('content')
+  <ul class="nav nav-tabs">
+    <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}">Overview</a></li>
+    <li class="active"><a href="/home/{{ $project->id}}-{{$project->name}}/tests">Tests</a></li>
+    <!-- <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}/files">Files</a></li> -->
+  </ul>
+  <br>
   @if (count($tests) > 0)
     <table class="table">
       <tr>
@@ -151,21 +161,31 @@
 	<th>Location</th>
 	<th>Dry Dens.</th>
 	<th>m%</th>
-	<th>rel. %</th>
 	<th>Max.</th>
+	<th>rel. %</th>
       </tr>
       @foreach($tests as $key => $test)
-	<tr>
+	<tr data-toggle="collapse" data-target="#demo{{$key}}" class="accordion-toggle">
 	  <td>{{ $test->number }}</td>
 	  <td>{{ $test->location }}</td>
 	  <td>{{ number_format($test->density_dry, 1) }}</td>
 	  <td>{{ number_format($test->percent_moisture, 1) }}</td>
-	  <td>{{ number_format($test->percent_compaction(), 1) }}</td>
 	  <td>{{ number_format($test->proctor->density_dry, 1) }}</td>
+	  <td>{{ number_format($test->percent_compaction(), 1) }}</td>
 	</tr>
+	<tr class="noborder">
+          <td colspan="6" class="hiddenRow">
+	    <div class="accordian-body collapse" id="demo{{$key}}">
+	      <p>Demo {{$key }} Other things to edit will need to go here</p>
+	      <p>Notes</p>
+	      <p>Test taker</p>
+	      <p>Test Method</p>	     
+	    </div>
+	  </td>
+        </tr>
     @endforeach
     </table>
   @else
-    <p>No tests added yet.</p>
+    <p>No tests yet.</p>
   @endif
 @stop
