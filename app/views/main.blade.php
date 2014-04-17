@@ -27,11 +27,11 @@
 
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
+	      @yield('navmenu')
               @if(!Auth::check())
 <!--		<li>{{ HTML::link('/register', 'Register') }}</li>   -->
 		<li>{{ HTML::link('/login', 'Sign In') }}</li>
 	      @else
-		@yield('navmenu')
 		<li><a href="/home">Home</a></li>
 		<li><a href="">Settings</a></li>
 		<li><a href="/logout">Logout</a></li>
@@ -71,7 +71,7 @@
     <footer>
       <div class="container">
 	<p>
-	  &copy;<?php echo date("Y"); ?> Devlabtech
+	  DensityPro &copy;<?php echo date("Y"); ?> Devlabtech
 	  <!-- &middot; 
 	  <a href="/privacy">Privacy</a> &middot; 
 	  <a href="/terms">Terms</a> &middot; 

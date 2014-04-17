@@ -8,7 +8,7 @@
 @stop
 
 @section('navmenu')
-  <li><button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-check"></span> Take Test</button></li>
+  <li><button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-check"></span> Take Test</button></li>
 @stop
 
 @section('underbody')
@@ -80,6 +80,14 @@
       </div>
     </div>
   </div>
+
+  <script>
+   $(document).ready( function(){
+     $('#myModal').on('shown.bs.modal', function () {
+       $('#elevationInput').focus();
+     })
+   });
+  </script>
 @stop
 
 @section('content')
@@ -185,5 +193,4 @@
       </div>
     </div>
   </div>
-
 @stop
