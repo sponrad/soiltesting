@@ -253,19 +253,44 @@
 	  <div>{{ $project->name }}</div>
 	</div>
 	<div class="modal-body">
-	  {{ Form::open(array('class'=>'form-new-test')) }}
+	  {{ Form::open(array('class'=>'form-new-test form-horizontal', 'role'=>'form')) }}
 	  {{ Form::hidden('action', 'createproctor') }}
-	  {{ Form::text('name', null, array('class'=>'input-block-level', 'placeholder'=>'Name')) }}
-	  {{ Form::text('description', null, array('class'=>'input-block-level', 'placeholder'=>'Description')) }}
-	  {{ Form::text('date', null, array('class'=>'input-block-level', 'placeholder'=>'Date')) }}
+	  <div class="form-group">
+	    <label for="name" class="col-sm-4 control-label">Name</label>
+	    <div class="col-sm-8">
+	      {{ Form::text('name', null, array('class'=>'input-block-level', 'placeholder'=>'Name')) }}
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="description" class="col-sm-4 control-label">Description</label>
+	    <div class="col-sm-8">
+	      {{ Form::text('description', null, array('class'=>'input-block-level', 'placeholder'=>'Description')) }}
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="date" class="col-sm-4 control-label">Date</label>
+	    <div class="col-sm-8">
+	      {{ Form::text('date', null, array('class'=>'input-block-level', 'placeholder'=>'Date')) }}
+	    </div>
+	  </div>
 	  <!--	  {{ Form::text('density_wet', null, array('class'=>'input-block-level', 'placeholder'=>'Wet Density')) }} --> 
-	  {{ Form::text('density_dry', null, array('class'=>'input-block-level', 'placeholder'=>'Dry Density')) }}
-	  {{ Form::text('percent_moisture', null, array('class'=>'input-block-level', 'placeholder'=>'Moisture %')) }}
-
-
-	  <br>
-	  {{ Form::submit('Add Proctor', array('class'=>'btn btn-large btn-primary')) }}
-
+	  <div class="form-group">
+	    <label for="density_dry" class="col-sm-4 control-label">Dry Density</label>
+	    <div class="col-sm-8">
+	      {{ Form::text('density_dry', null, array('class'=>'input-block-level', 'placeholder'=>'Dry Density')) }}
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="percent_moisture" class="col-sm-4 control-label">Percent Moisture</label>
+	    <div class="col-sm-8">
+	      {{ Form::text('percent_moisture', null, array('class'=>'input-block-level', 'placeholder'=>'Moisture %')) }}
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <div class="col-sm-offset-4 col-sm-8">
+	      {{ Form::submit('Add Proctor', array('class'=>'btn btn-large btn-primary')) }}
+	    </div>
+	  </div>
 	  {{ Form::close() }}
 	</div>
       </div>

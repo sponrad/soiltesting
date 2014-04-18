@@ -222,7 +222,8 @@
 	    <div class="accordian-body collapse" id="demo{{$key}}">
 	      <p>
 		Elevation: {{ $test->elevation }} | 
-		Wet Density: {{ number_format($test->density_wet, 1) }}
+		Wet Density: {{ number_format($test->density_wet, 1) }} | 
+		Date: {{ $test->created_at->format('m/d/Y H:i') }}
 	      </p>
 	      <p>Notes:</p>
 	      <div id="notes" class="notes" data-pk={{ $test->id }}>@if ( $test->notes != " "){{ $test->notes }} @else Enter notes @endif</div>

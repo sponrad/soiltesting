@@ -39,11 +39,16 @@
 	  <h2>New Project</h2>
 	</div>
 	<div class="modal-body">
-	  {{ Form::open(array('url'=>'/home', 'class'=>'form-new-project')) }}
+	  {{ Form::open(array('url'=>'/home', 'class'=>'form-new-project', 'role'=>'form')) }}
 	  {{ Form::hidden('action', 'createproject') }}
-	  {{ Form::text('projectname', null, array('class'=>'input-block-level', 'placeholder'=>'Project Name')) }}
-	  <br>
+	  <div class="form-group">
+	    <label for="projectname">Project Name</label>
+	    {{ Form::text('projectname', null, array('class'=>'input-block-level', 'placeholder'=>'Project Name')) }}
+	  </div>
+	  
+	  <div class="form-group">
 	  {{ Form::submit('Create', array('class'=>'btn btn-large btn-primary')) }}
+	  </div>
 	  {{ Form::close() }}
 	</div>
       </div>
