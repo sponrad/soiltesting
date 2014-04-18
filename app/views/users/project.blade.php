@@ -8,12 +8,24 @@
   <style>
    #informationHeading{
      background: #fefcbb;
+     padding: 5px;
+     border-radius: 5px;
    }
    #testsHeading{
      background: #ffcfcb;
+     padding: 5px;
+     border-radius: 5px;
    }
    #proctorsHeading{
      background: #ccfbfe;
+     padding: 5px;
+     border-radius: 5px;
+   }
+   #notes{
+     border: dashed 2px #eea;
+     padding: 10px;
+   }
+   .editable-input textarea.input-large {
    }
   </style>
 @stop
@@ -101,6 +113,9 @@
        pk:    {{ $project->id }},
        mode: 'inline',
        name:  'notes',
+       params: {
+	 action: 'projectnotes'
+       },
        url:   '/editable',  
        title: 'Project Notes'
      });
@@ -164,8 +179,7 @@
 
   <div class="row">
     <div class="col-md-6">
-      <h3 id="informationHeading">Project Information</h3>
-      <p>Notes</p>
+      <h3 id="informationHeading">Project Notes</h3>
       <div id="notes">@if ( $project->notes != ""){{ $project->notes }}@else Enter notes here @endif</div>
     </div>
     

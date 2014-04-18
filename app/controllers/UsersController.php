@@ -196,9 +196,17 @@ class UsersController extends BaseController {
 
     public function postEditable() {
         $inputs = Input::all();
-        $project = Project::find(intval($inputs['pk']));
-        $project->$inputs['name'] = $inputs['value'];
-        return strval($project->save());
+        switch ( $inputs['action'] ) {
+        case "testnotes":
+            $entity = Test::find(intval($inputs['pk']));
+            $entity->$inputs['name'] = $inputs['value'];
+            break;
+        case "projectnotes":
+            $entity = Project::find(intval($inputs['pk']));
+            $entity->$inputs['name'] = $inputs['value'];
+            break;
+        }
+        return strval($entity->save());
     }
 }
 

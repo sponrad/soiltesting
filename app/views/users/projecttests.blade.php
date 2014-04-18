@@ -11,13 +11,14 @@
    }
    tr.noborder td{
      border-top: none !important;
+     border-bottom: 1px solid gray;
    }
    #tableHead th{
      background: #ffcfcb;
      border-bottom: 2px solid black;
    }
    tr.even td {
-     background: #dddfbd;
+     background: #eeefbe;
    }
   </style>
 @stop
@@ -102,6 +103,21 @@
      $('#myModal').on('shown.bs.modal', function () {
        $('#elevationInput').focus();
      });
+
+     $.fn.editable.defaults.mode = 'popup'; //popup inline
+
+     $('.notes').each( function(){
+       $(this).editable({
+	 type:  'textarea',
+	 mode: 'inline',
+	 name:  'notes',
+	 params: {
+	   action: 'testnotes',
+	 },
+	 url:   '/editable',  
+	 title: 'Test Notes'
+       });     
+     });     
 
      //fires when wet, dry, or moisture have been changed.
      $("#density_wet, #density_dry, #percent_moisture").change(
@@ -188,11 +204,9 @@
 	<tr class="noborder">
           <td colspan="6" class="hiddenRow">
 	    <div class="accordian-body collapse" id="demo{{$key}}">
-	      <p>Demo {{$key }} Other things to edit will need to go here</p>
 	      <p>Notes</p>
-	      <p>Test taker</p>
-	      <p>Test Method</p>
-	      <button class="btn btn-danger">Delete</button>
+	      <div id="notes" class="notes" data-pk={{ $test->id }}>@if ( $test->notes != ""){{ $test->notes }} @else Enter notes @endif</div>
+	      <button class="btn btn-danger pull-right">Delete</button>
 	    </div>
 	  </td>
         </tr>
