@@ -25,7 +25,8 @@
      border: dashed 2px #eea;
      padding: 10px;
    }
-   .editable-input textarea.input-large {
+   .editableform .form-control {
+     width: 400px;
    }
   </style>
 @stop

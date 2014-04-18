@@ -33,6 +33,9 @@
      border: dashed 2px #eea;
      padding: 10px;
    }
+   .editableform .form-control {
+     width: 400px;
+   }
   </style>
 @stop
 
