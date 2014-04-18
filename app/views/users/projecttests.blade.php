@@ -9,16 +9,29 @@
    .hiddenRow {
      padding: 0 !important;
    }
+   tr {
+     border-left: gray 1px solid;
+     border-right: gray 1px solid;
+   }
    tr.noborder td{
      border-top: none !important;
      border-bottom: 1px solid gray;
+     padding: 0px 5px 0px 5px !important;
    }
    #tableHead th{
      background: #ffcfcb;
      border-bottom: 2px solid black;
+     border-top: 1px solid gray;
+   }
+   tr.odd td {
+     background: #ffffdf;
    }
    tr.even td {
      background: #eeefbe;
+   }
+   .notes {
+     border: dashed 2px #eea;
+     padding: 10px;
    }
   </style>
 @stop
@@ -190,11 +203,11 @@
       </tr>
       @foreach($tests as $key => $test)
 	@if ($key % 2 == 0)
-	<tr data-toggle="collapse" data-target="#demo{{$key}}" class="accordion-toggle">
+	<tr data-toggle="collapse" data-target="#demo{{$key}}" class="accordion-toggle odd">
 	@else
 	<tr data-toggle="collapse" data-target="#demo{{$key}}" class="accordion-toggle even">	
 	@endif
-	  <td>{{ $test->number }}</td>
+	  <td><b>{{ $test->number }}</b></td>
 	  <td>{{ $test->location }}</td>
 	  <td>{{ number_format($test->density_dry, 1) }}</td>
 	  <td>{{ number_format($test->percent_moisture, 1) }}</td>
@@ -204,8 +217,12 @@
 	<tr class="noborder">
           <td colspan="6" class="hiddenRow">
 	    <div class="accordian-body collapse" id="demo{{$key}}">
-	      <p>Notes</p>
-	      <div id="notes" class="notes" data-pk={{ $test->id }}>@if ( $test->notes != ""){{ $test->notes }} @else Enter notes @endif</div>
+	      <p>
+		Elevation: {{ $test->elevation }} | 
+		Wet Density: {{ number_format($test->density_wet, 1) }}
+	      </p>
+	      <p>Notes:</p>
+	      <div id="notes" class="notes" data-pk={{ $test->id }}>@if ( $test->notes != " "){{ $test->notes }} @else Enter notes @endif</div>
 	      <button class="btn btn-danger pull-right">Delete</button>
 	    </div>
 	  </td>
