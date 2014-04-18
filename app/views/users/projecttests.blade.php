@@ -12,6 +12,13 @@
    tr.noborder td{
      border-top: none !important;
    }
+   #tableHead th{
+     background: #ffcfcb;
+     border-bottom: 2px solid black;
+   }
+   tr.even td {
+     background: #dddfbd;
+   }
   </style>
 @stop
 
@@ -166,7 +173,11 @@
 	<th>rel. %</th>
       </tr>
       @foreach($tests as $key => $test)
+	@if ($key % 2 == 0)
 	<tr data-toggle="collapse" data-target="#demo{{$key}}" class="accordion-toggle">
+	@else
+	<tr data-toggle="collapse" data-target="#demo{{$key}}" class="accordion-toggle even">	
+	@endif
 	  <td>{{ $test->number }}</td>
 	  <td>{{ $test->location }}</td>
 	  <td>{{ number_format($test->density_dry, 1) }}</td>

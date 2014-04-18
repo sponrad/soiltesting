@@ -5,6 +5,17 @@
 @stop
 
 @section('underheader')
+  <style>
+   #informationHeading{
+     background: #fefcbb;
+   }
+   #testsHeading{
+     background: #ffcfcb;
+   }
+   #proctorsHeading{
+     background: #ccfbfe;
+   }
+  </style>
 @stop
 
 @section('navmenu')
@@ -153,7 +164,7 @@
 
   <div class="row">
     <div class="col-md-6">
-      <h3>Project Information</h3>
+      <h3 id="informationHeading">Project Information</h3>
       <p>Notes</p>
       <div id="notes">@if ( $project->notes != ""){{ $project->notes }}@else Enter notes here @endif</div>
     </div>
@@ -166,7 +177,7 @@
     -->
   </div>
 
-  <h3>Recent Tests <a href="/home/{{ $project->id}}-{{$project->name}}/tests"><small>(see all)</small></a></h3>
+  <h3 id="testsHeading">Recent Tests <a href="/home/{{ $project->id}}-{{$project->name}}/tests"><small>(see all)</small></a></h3>
 
 
   @if (count($tests) > 0)
@@ -192,7 +203,7 @@
     <p>No tests yet.</p>
   @endif
 
-  <h3>Proctors</h3>
+  <h3 id="proctorsHeading">Proctors</h3>
 
   <button class="btn btn-primary" data-toggle="modal" data-target="#proctorModal">Add a Proctor</button>
 
