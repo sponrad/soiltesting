@@ -4,7 +4,7 @@ class UsersController extends BaseController {
     protected $layout = "main";
 
     public function __construct(){
-        $this->beforeFilter('csrf', array('on'=>'post'));
+        $this->beforeFilter('csrf', array('on'=>'post', 'except'=>'postEditable'));
         $this->beforeFilter('auth', array('only'=> array(
             'getHome',
             'getProject',
@@ -13,7 +13,8 @@ class UsersController extends BaseController {
             'getProjectTests',
             'postProjectTests',
             'getProjectFiles',
-            'postProjectFiles'
+            'postProjectFiles',
+            'postEditable',
         )));
     }
 
@@ -191,6 +192,13 @@ class UsersController extends BaseController {
             return Redirect::to('/register')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
             
         }        
+    }
+
+    public function postEditable() {
+        $inputs = Input::all();
+        $project = Project::find(intval($inputs['pk']));
+        $project->$inputs['name'] = $inputs['value'];
+        return strval($project->save());
     }
 }
 

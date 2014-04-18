@@ -38,4 +38,6 @@ Route::get('/settings', 'UsersController@getSettings');
 Route::post('/json/login', 'JSONController@postSignin');
 Route::get('/json/login', function(){ return View::make('jsonLogin'); });
 
+Route::post('/editable', 'UsersController@postEditable');
+
 Route::get('/', function(){ return View::make('hello'); });

@@ -88,12 +88,13 @@
       </div>
     </div>
   </div>
+
   <script>
 
  $(document).ready( function(){
      $('#myModal').on('shown.bs.modal', function () {
        $('#elevationInput').focus();
-     })
+     });
 
      //fires when wet, dry, or moisture have been changed.
      $("#density_wet, #density_dry, #percent_moisture").change(

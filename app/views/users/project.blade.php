@@ -83,9 +83,63 @@
 
   <script>
    $(document).ready( function(){
+     $.fn.editable.defaults.mode = 'popup'; //popup inline
+
+     $('#notes').editable({
+       type:  'textarea',
+       pk:    {{ $project->id }},
+       mode: 'inline',
+       name:  'notes',
+       url:   '/editable',  
+       title: 'Project Notes'
+     });
+
      $('#myModal').on('shown.bs.modal', function () {
        $('#elevationInput').focus();
-     })
+     });
+
+     //fires when wet, dry, or moisture have been changed.
+     $("#density_wet, #density_dry, #percent_moisture").change(
+       function(e){
+	 //check if moisture has a val if not exit
+	 if ( $("#percent_moisture").val() == ""){
+	   return
+	 }
+	 var proceed = false;
+	 //check if wet or dry are calling this
+	 if (e.target.id == "density_dry"){
+	   proceed = true;
+	   starter = "density_dry";
+	 }
+	 if (e.target.id == "density_wet"){
+	   proceed = true;
+	   starter = "density_wet";
+	 }
+	 if (e.target.id == "percent_moisture"){
+	   if ($("#density_wet").val() != ""){
+	     starter = "density_wet";
+	     proceed = true;	     
+	   }
+	   else if ($("#density_dry").val() != ""){
+	     starter = "density_dry";
+	     proceed = true;
+	   }
+	 }
+	 if (proceed){
+	   //updates relative density, and one of wet or dry density (opposite of the one firing the event
+	   if (starter == "density_wet"){
+	     density_dry = $("#density_wet").val() / (1 + ( $("#percent_moisture").val() / 100 ));
+	     $("#density_dry").val( density_dry.toFixed(1) );
+	   }
+	   else {
+	     density_wet = $("#density_dry").val() * (1 + ( $("#percent_moisture").val() / 100 ));
+	     $("#density_wet").val( density_wet.toFixed(1) );
+	   }
+
+	   compaction_percent = $("#density_dry").val() / $("#proctorInput").find(":selected").attr("id") * 100;
+	   $("#compaction_percent").val(compaction_percent.toFixed(1));
+	 }
+       });
    });
   </script>
 @stop
@@ -100,10 +154,8 @@
   <div class="row">
     <div class="col-md-6">
       <h3>Project Information</h3>
-      <p>Project Name</p>
-      <p>Contact Information</p>
-      <p>Important notes</p>
-      <a href="">Link to edit</a>
+      <p>Notes</p>
+      <div id="notes">@if ( $project->notes != ""){{ $project->notes }}@else Enter notes here @endif</div>
     </div>
     
     <!-- 
