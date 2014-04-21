@@ -19,7 +19,8 @@
      padding: 0px 5px 0px 5px !important;
    }
    #tableHead th{
-     background: #ffcfcb;
+     background: #d2322d;
+     color: white;
      border-bottom: 2px solid black;
      border-top: 1px solid gray;
    }

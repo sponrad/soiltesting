@@ -22,3 +22,8 @@ html {
     min-height: 600px;
     margin-top: 70px;
 }
+
+.navbar-inverse .navbar-nav>li>a,
+.navbar-inverse .navbar-brand {
+    color: #eee;
+}

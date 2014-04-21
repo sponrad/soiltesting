@@ -7,18 +7,21 @@
 @section('underheader')
   <style>
    #informationHeading{
-     background: #fefcbb;
-     padding: 5px;
+     background: #ed9c28;
+     color: white;
+     padding: 5px 10px;
      border-radius: 5px;
    }
    #testsHeading{
-     background: #ffcfcb;
-     padding: 5px;
+     background: #d2322d;
+     color: white;
+     padding: 5px 10px;
      border-radius: 5px;
    }
    #proctorsHeading{
-     background: #ccfbfe;
-     padding: 5px;
+     background: #39b3d7;
+     color: white;
+     padding: 5px 10px;
      border-radius: 5px;
    }
    #notes{
@@ -180,7 +183,7 @@
 
   <div class="row">
     <div class="col-md-6">
-      <h3 id="informationHeading">Project Notes</h3>
+      <h3 id="informationHeading">Notes</h3>
       <div id="notes">@if ( $project->notes != ""){{ $project->notes }}@else Enter notes here @endif</div>
     </div>
     
