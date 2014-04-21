@@ -37,6 +37,12 @@
    .editableform .form-control {
      width: 400px;
    }
+   .testExpand{
+     padding: 5px;
+   }
+   .testButtonDiv{
+     padding: 10px;
+   }
   </style>
 @stop
 
@@ -141,7 +147,19 @@
        function(e){
 	 //check if moisture has a val if not exit
 	 if ( $("#percent_moisture").val() == ""){
-	   return
+	   //check if both wet and dry have a value
+	   if( $("#density_dry").val() != "" && $("#density_wet").val() != "" ){
+	     //calc the moisture
+	     percent_moisture = ( $("#density_wet").val() /  $("#density_dry").val() - 1 ) * 100;
+	     $("#percent_moisture").val(percent_moisture.toFixed(1));
+
+	     compaction_percent = $("#density_dry").val() / $("#proctorInput").find(":selected").attr("id") * 100;
+	     $("#compaction_percent").val(compaction_percent.toFixed(1));
+	     return
+	   }
+	   else {
+	     return
+	   }
 	 }
 	 var proceed = false;
 	 //check if wet or dry are calling this
@@ -207,9 +225,9 @@
       </tr>
       @foreach($tests as $key => $test)
 	@if ($key % 2 == 0)
-	<tr data-toggle="collapse" data-target="#demo{{$key}}" class="accordion-toggle odd">
+	<tr data-toggle="collapse" data-target="#demo{{$key}}" class="accordion-toggle odd" title="Click or tap to see more details">
 	@else
-	<tr data-toggle="collapse" data-target="#demo{{$key}}" class="accordion-toggle even">	
+	<tr data-toggle="collapse" data-target="#demo{{$key}}" class="accordion-toggle even" title="Click or tap to see more details">
 	@endif
 	  <td><b>{{ $test->number }}</b></td>
 	  <td>{{ $test->location }}</td>
@@ -221,14 +239,18 @@
 	<tr class="noborder">
           <td colspan="6" class="hiddenRow">
 	    <div class="accordian-body collapse" id="demo{{$key}}">
-	      <p>
+	      <p class="testExpand">
 		Elevation: {{ $test->elevation }} | 
 		Wet Density: {{ number_format($test->density_wet, 1) }} | 
 		Date: {{ $test->created_at->format('m/d/Y H:i') }}
 	      </p>
 	      <p>Notes:</p>
-	      <div id="notes" class="notes" data-pk={{ $test->id }}>@if ( $test->notes != " "){{ $test->notes }} @else Enter notes @endif</div>
-	      <button class="btn btn-danger pull-right">Delete</button>
+	      <div id="notes" title="Click or tap to edit" class="notes" data-pk={{ $test->id }}>@if ( $test->notes != " "){{ $test->notes }} @else Enter notes @endif</div>
+	      <div class="testButtonDiv">
+		<button class="btn btn-danger pull-right">Delete</button>
+		<button class="btn btn-info pull-right">Edit</button>
+		<div style="clear: both;"></div>
+	      </div>
 	    </div>
 	  </td>
         </tr>

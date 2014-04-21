@@ -31,6 +31,9 @@
    .editableform .form-control {
      width: 400px;
    }
+   #allTestsLink{
+     color: #eee;
+   }
   </style>
 @stop
 
@@ -184,7 +187,7 @@
   <div class="row">
     <div class="col-md-6">
       <h3 id="informationHeading">Notes</h3>
-      <div id="notes">@if ( $project->notes != ""){{ $project->notes }}@else Enter notes here @endif</div>
+      <div id="notes" title="Click or tap to edit">@if ( $project->notes != ""){{ $project->notes }}@else Enter notes here @endif</div>
     </div>
     
     <!-- 
@@ -195,7 +198,7 @@
     -->
   </div>
 
-  <h3 id="testsHeading">Recent Tests <a href="/home/{{ $project->id}}-{{$project->name}}/tests"><small>(see all)</small></a></h3>
+  <h3 id="testsHeading">Recent Tests <a href="/home/{{ $project->id}}-{{$project->name}}/tests"><small id="allTestsLink">(see all)</small></a></h3>
 
 
   @if (count($tests) > 0)
@@ -251,10 +254,6 @@
   <div class="modal fade" id="proctorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-	<div class="modal-header">
-	  <h2>New Proctor</h2>
-	  <div>{{ $project->name }}</div>
-	</div>
 	<div class="modal-body">
 	  {{ Form::open(array('class'=>'form-new-test form-horizontal', 'role'=>'form')) }}
 	  {{ Form::hidden('action', 'createproctor') }}

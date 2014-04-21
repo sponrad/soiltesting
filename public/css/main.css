@@ -23,6 +23,10 @@ html {
     margin-top: 70px;
 }
 
+.navbar-inverse{
+    background: #333;
+}
+
 .navbar-inverse .navbar-nav>li>a,
 .navbar-inverse .navbar-brand {
     color: #eee;
