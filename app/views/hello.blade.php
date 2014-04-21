@@ -213,13 +213,12 @@
           </div>
 
           <div class="inner cover">
-            <h1 class="cover-heading">Log Density Tests in the Cloud</h1>
-            <p class="lead">Density test organization and storage</p>
-	    <p>Digitize density tests as they are taken.</p>
+            <h1 class="cover-heading">Density Test Software</h1>
+            <p class="lead">Density test organization and cloud storage for soil engineers and soil technicians.</p>
+	    <p>Digitize density tests as they are taken in the field.</p>
 	    <p>Store data and files for multiple projects.</p>
-	    <p>Output beautiful reports.</p>
-	    <p>Access any time from any device.</p><br>
-	    <p>Simple payment plans and built with technology used by major companies worldwide.</p>
+	    <p>Access density test data any time from any device.</p><br>
+	    <p>Offered with simple payment plans and built with secure technology used by major companies worldwide.</p>
 	    <p class="lead">
 	      <span class="">Contact conrad@devlabtech.com for more information</span>
 	    </p>
