@@ -10,6 +10,7 @@ class UsersController extends BaseController {
             'getProject',
             'postProject',
             'getSettings',
+            'postSettings',
             'getProjectTests',
             'postProjectTests',
             'getProjectFiles',
@@ -170,6 +171,20 @@ class UsersController extends BaseController {
     public function getSettings(){
         $user = Auth::user();
         return View::make('users.settings');
+    }
+
+    public function postSettings(){
+        $user = Auth::user();
+        $account = $user->account();
+        $password = Input::get('password');
+        $password_confirmation = Input::get('password_confirmation');
+
+        if ($password == $password_confirmation && $password != ""){
+            $user->password = Hash::make(Input::get('password'));                    }
+
+        $user->save();
+        
+        return Redirect::to('/settings')->with('message', 'Settings Saved');
     }
 
     public function postCreate() {

@@ -34,6 +34,7 @@ Route::post('/upload/{folderId}', 'UploadController@postUploads');
 Route::get('/upload', function(){ return "use POST"; });
 
 Route::get('/settings', 'UsersController@getSettings');
+Route::post('/settings', 'UsersController@postSettings');
 
 Route::post('/json/login', 'JSONController@postSignin');
 Route::get('/json/login', function(){ return View::make('jsonLogin'); });
