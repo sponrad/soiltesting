@@ -2,7 +2,6 @@
 
 @section('brandlink')
   <a class="navbar-brand" href="/home">{{ Auth::user()->account->companyname }}</a>  
-
 @stop
 
 @section('underheader')

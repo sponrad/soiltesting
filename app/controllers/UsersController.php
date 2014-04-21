@@ -168,6 +168,7 @@ class UsersController extends BaseController {
     }
 
     public function getSettings(){
+        $user = Auth::user();
         return View::make('users.settings');
     }
 

@@ -1,12 +1,22 @@
 @extends('main')
 
+@section('brandlink')
+  <a class="navbar-brand" href="/">DensityPro</a>  
+@stop
+
 @section('content') 
-  {{ Form::open(array('url'=>'/login', 'class'=>'form-signin')) }}
+  {{ Form::open(array('url'=>'/login', 'class'=>'form-signin', 'role'=>'form')) }}
   <h2 class="form-signin-heading">Please Sign In</h2>
+ 
+  <div class="form-group">
+    <label for="email">Email Address</label>
+    {{ Form::text('email', null, array('class'=>'input-block-level', 'placeholder'=>'Email Address')) }}
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    {{ Form::password('password', array('class'=>'input-block-level', 'placeholder'=>'Password')) }}
+  </div>
   
-  {{ Form::text('email', null, array('class'=>'input-block-level', 'placeholder'=>'Email Address')) }}
-  {{ Form::password('password', array('class'=>'input-block-level', 'placeholder'=>'Password')) }}
-  
-  {{ Form::submit('Login', array('class'=>'btn btn-large btn-primary btn-block'))}}
+  {{ Form::submit('Sign In', array('class'=>'btn btn-large btn-primary btn-block'))}}
   {{ Form::close() }}
 @stop

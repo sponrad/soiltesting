@@ -34,7 +34,7 @@
 		<li>{{ HTML::link('/login', 'Sign In') }}</li>
 	      @else
 		<li><a href="/home">Home</a></li>
-		<li><a href="">Settings</a></li>
+		<li><a href="/settings">Settings</a></li>
 		<li><a href="/logout">Logout</a></li>
 		<!--
 		<li class="dropdown">
