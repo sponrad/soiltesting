@@ -136,7 +136,19 @@
        function(e){
 	 //check if moisture has a val if not exit
 	 if ( $("#percent_moisture").val() == ""){
-	   return
+	   //check if both wet and dry have a value
+	   if( $("#density_dry").val() != "" && $("#density_wet").val() != "" ){
+	     //calc the moisture
+	     percent_moisture = ( $("#density_wet").val() /  $("#density_dry").val() - 1 ) * 100;
+	     $("#percent_moisture").val(percent_moisture.toFixed(1));
+
+	     compaction_percent = $("#density_dry").val() / $("#proctorInput").find(":selected").attr("id") * 100;
+	     $("#compaction_percent").val(compaction_percent.toFixed(1));
+	     return
+	   }
+	   else {
+	     return
+	   }
 	 }
 	 var proceed = false;
 	 //check if wet or dry are calling this
