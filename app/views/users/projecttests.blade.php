@@ -31,7 +31,7 @@
      background: #eeefbe;
    }
    .notes {
-     border: dashed 2px #eea;
+     border: dashed 2px #cc8;
      padding: 10px;
    }
    .editableform .form-control {

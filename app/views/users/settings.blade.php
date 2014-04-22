@@ -4,6 +4,12 @@
   <a class="navbar-brand" href="/home">{{ Auth::user()->account->companyname }}</a>  
 @stop
 
+@section('underbody')
+  <style>
+   
+  </style>
+@stop
+
 @section('content')
   @if( Session::has('message'))
     <div class="alert alert-success alert-dismissable">
@@ -18,8 +24,8 @@
 
   {{ Form::open(array('url'=>'/settings', 'class'=>'form-signup', 'role'=>'form')) }}
     <div class="form-group">
-      <label for="password">Change Password</label>
-      <input type="password" name="password" class="form-control" placeholder="Password">
+      <p>Change Password</p>
+      <input type="password" name="password" class="form-control" placeholder="Password"> 
       <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password">
     </div>
     

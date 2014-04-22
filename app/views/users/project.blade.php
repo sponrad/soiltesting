@@ -25,7 +25,7 @@
      border-radius: 5px;
    }
    #notes{
-     border: dashed 2px #eea;
+     border: dashed 2px #cc8;
      padding: 10px;
    }
    .editableform .form-control {
@@ -33,6 +33,9 @@
    }
    #allTestsLink{
      color: #eee;
+   }
+   .form-delete-project{
+     display: inline;
    }
   </style>
 @stop
@@ -215,7 +218,7 @@
       <h3>Project Functions</h3>
       <button class="btn btn-default" data-toggle="modal" data-target="#projectNameModal">Change Project Name</button>
       <button class="btn btn-default" data-toggle="modal" data-target="#exportDataButton" title="Download a file containing project information, proctors, and test data in CSV format">CSV Export</button>      
-      {{ Form::open(array('class'=>'form-new-test form-horizontal', 'role'=>'form')) }}
+      {{ Form::open(array('class'=>'form-delete-project', 'role'=>'form')) }}
       <input type="hidden" name="action" value="deleteproject" />
       <input type="submit" value="Delete Project" class="btn btn-default" id="deleteProjectButton" title="You will be prompted for confirmation prior to deleting"></input>
       {{ Form::close() }}
