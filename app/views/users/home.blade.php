@@ -11,7 +11,11 @@
 
 @section('underbody')
   <style>
-   .projectLink{
+   .projectBox{
+     text-align: center;
+   }
+   a.projectLink{
+     color: black;
      display: inline-block;
      max-width: 150px;
      min-width: 50px; 
@@ -19,11 +23,26 @@
      height: 150px;
      padding: 15px;
      margin: 5px;
-     text-align: center;
      border: solid 1px gray;
      background: #eeeeff;
-     color: black;
      float: left;
+     position: relative;
+     border-radius: 10px;
+   }
+   a.projectLink:hover{
+     text-decoration: none;
+     backround-color: #428bca;
+     background: #428bca;
+     color: white;    
+   }
+   a.projectLink:active{
+     text-decoration: none;
+     backround-color: #aaaabb;
+     background: #aaaabb;
+     color: white;    
+   }
+   .testDiv{     
+     font-size: 85%;
    }
   </style>
 @stop
@@ -56,7 +75,16 @@
   
   @if (count($projects) > 0)
     @foreach($projects as $key => $project)
-      <a class="projectLink" href="/home/{{ $project->id }}-{{ $project->name }}">{{ $project->name }}</a>
+      <div class="projectBox">
+	<a class="projectLink" href="/home/{{ $project->id }}-{{ $project->name }}">
+	  {{ $project->name }}
+	  <br><br>
+	  @if ($project->tests->count() > 0)
+	  <p class="testDiv">{{ $project->tests->count()}} Tests</p>
+	  <p class="testDiv">Last tested: {{ $project->tests->last()->created_at->format('n/d/y H:i')  }}</p>
+	  @endif
+	</a>
+      </div>
     @endforeach
   @endif
 @stop

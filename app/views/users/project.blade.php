@@ -213,11 +213,11 @@
     
     <div class="col-md-6">
       <h3>Project Functions</h3>
-      <button class="btn btn-primary" data-toggle="modal" data-target="#projectNameModal">Change Project Name</button>
-      <button class="btn btn-primary" data-toggle="modal" data-target="#exportDataButton">Export Data to CSV</button>      
+      <button class="btn btn-default" data-toggle="modal" data-target="#projectNameModal">Change Project Name</button>
+      <button class="btn btn-default" data-toggle="modal" data-target="#exportDataButton" title="Download a file containing project information, proctors, and test data in CSV format">CSV Export</button>      
       {{ Form::open(array('class'=>'form-new-test form-horizontal', 'role'=>'form')) }}
       <input type="hidden" name="action" value="deleteproject" />
-      <input type="submit" value="Delete Project" class="btn btn-danger" id="deleteProjectButton" title="Will prompt for confirmation prior to deleting"></input>
+      <input type="submit" value="Delete Project" class="btn btn-default" id="deleteProjectButton" title="You will be prompted for confirmation prior to deleting"></input>
       {{ Form::close() }}
     </div>
   </div>
