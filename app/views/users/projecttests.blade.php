@@ -35,7 +35,8 @@
      padding: 10px;
    }
    .editableform .form-control {
-     width: 400px;
+     /*width: 400px;*/
+     width: 200%;
    }
    .testExpand{
      padding: 5px;
@@ -245,7 +246,9 @@
 		Date: {{ $test->created_at->format('m/d/Y H:i') }}
 	      </p>
 	      <p>Notes:</p>
+
 	      <div id="notes" title="Click or tap to edit" class="notes" data-pk={{ $test->id }}>@if ( $test->notes != " "){{ $test->notes }} @else Enter notes @endif</div>
+
 	      <div class="testButtonDiv">
 		<button class="btn btn-danger pull-right">Delete</button>
 		<button class="btn btn-info pull-right">Edit</button>

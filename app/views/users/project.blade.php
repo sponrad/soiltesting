@@ -202,12 +202,11 @@
       <div id="notes" title="Click or tap to edit">@if ( $project->notes != ""){{ $project->notes }}@else Enter notes here @endif</div>
     </div>
     
-    <!-- 
     <div class="col-md-6">
-      <h3>Recent Files <a href="/home/{{ $project->id}}-{{$project->name}}/files"><small>(see all)</small></a></h3>
-      <p>No Files</p>
+      <h3>Project Functions</h3>
+      <button class="btn btn-primary" data-toggle="modal" data-target="#projectNameModal">Change Project Name</button>
+      <button class="btn btn-primary" data-toggle="modal" data-target="#exportDataButton">Export Data to CSV</button>      
     </div>
-    -->
   </div>
 
   <h3 id="testsHeading">Recent Tests <a href="/home/{{ $project->id}}-{{$project->name}}/tests"><small id="allTestsLink">(see all)</small></a></h3>
@@ -310,4 +309,29 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="projectNameModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+	<div class="modal-header">
+	  <h2>Change Project Name</h2>
+	  <p>{{ $project->name }}</p>
+	</div>
+	<div class="modal-body">
+	  {{ Form::open(array('class'=>'form-change-project-name', 'role'=>'form')) }}
+	  {{ Form::hidden('action', 'changeprojectname') }}
+	  <div class="form-group">
+	    <label for="projectname">Project Name</label>
+	    {{ Form::text('projectname', $project->name, array('class'=>'input-block-level', 'placeholder'=>$project->name)) }}
+	  </div>
+	  
+	  <div class="form-group">
+	    {{ Form::submit('Change', array('class'=>'btn btn-large btn-primary')) }}
+	  </div>
+	  {{ Form::close() }}
+	</div>
+      </div>
+    </div>
+  </div>
+  
 @stop

@@ -91,7 +91,6 @@ class UsersController extends BaseController {
         $action = Input::get('action');
 
         if ($action == "createproctor"){
-            $user = Auth::user();
             $proctor = new Proctor;
             $proctor->project()->associate($project);
             $proctor->name = Input::get('name');
@@ -102,6 +101,12 @@ class UsersController extends BaseController {
             $proctor->density_wet = $proctor->density_dry * (1 + $proctor->percent_moisture/100);
             $proctor->save();
 
+            return Redirect::to('/home/'.$project->id.'-'.$project->name)->with('message', 'Project created');
+        }
+
+        if ($action == "changeprojectname"){
+            $project->name = Input::get("projectname");
+            $project->save();
             return Redirect::to('/home/'.$project->id.'-'.$project->name)->with('message', 'Project created');
         }
 
