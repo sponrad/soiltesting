@@ -107,7 +107,15 @@ class UsersController extends BaseController {
         if ($action == "changeprojectname"){
             $project->name = Input::get("projectname");
             $project->save();
-            return Redirect::to('/home/'.$project->id.'-'.$project->name)->with('message', 'Project created');
+            return Redirect::to('/home/'.$project->id.'-'.$project->name)->with('message', 'Project name changed');
+        }
+
+        if ($action == "deleteproject"){
+            Proctor::where("project_id", "=", $project->id)->delete();
+            Test::where("project_id", "=", $project->id)->delete();
+            $project->delete();
+
+            return Redirect::to('/home')->with('message', 'Project deleted');
         }
 
     }

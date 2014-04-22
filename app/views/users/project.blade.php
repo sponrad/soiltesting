@@ -113,6 +113,15 @@
 
   <script>
    $(document).ready( function(){
+     $("#deleteProjectButton").click( function(event){
+       event.preventDefault();
+       if (confirm("Are you sure you want to delete this project?")){
+	 $(event.target).parent().submit();
+       }
+       else {
+       }
+     })
+     
      $.fn.editable.defaults.mode = 'popup'; //popup inline
 
      $('#notes').editable({
@@ -206,6 +215,10 @@
       <h3>Project Functions</h3>
       <button class="btn btn-primary" data-toggle="modal" data-target="#projectNameModal">Change Project Name</button>
       <button class="btn btn-primary" data-toggle="modal" data-target="#exportDataButton">Export Data to CSV</button>      
+      {{ Form::open(array('class'=>'form-new-test form-horizontal', 'role'=>'form')) }}
+      <input type="hidden" name="action" value="deleteproject" />
+      <input type="submit" value="Delete Project" class="btn btn-danger" id="deleteProjectButton" title="Will prompt for confirmation prior to deleting"></input>
+      {{ Form::close() }}
     </div>
   </div>
 
