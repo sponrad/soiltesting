@@ -10,7 +10,12 @@
      padding: 0 !important;
    }
    tr {
+
+   }
+   tr td:first-child{
      border-left: gray 1px solid;
+   }
+   tr td:last-child{
      border-right: gray 1px solid;
    }
    tr.noborder td{
@@ -21,8 +26,13 @@
    #tableHead th{
      background: #d2322d;
      color: white;
-     border-bottom: 2px solid black;
-     border-top: 1px solid gray;
+     border-top: gray 1px solid;
+   }
+   #tableHead th:first-child{
+     border-left: gray 1px solid;
+   }
+   #tableHead th:last-child{
+     border-right: gray 1px solid;
    }
    tr.odd td {
      background: #ffffdf;
