@@ -228,8 +228,7 @@
   @if (count($tests) > 0)
     <table class="table">
       <tr id="tableHead">
-	<th></th>
-	<th>No.</th>
+	<th> No.</th>
 	<th>Loc.</th>
 	<th>Dry Dens.</th>
 	<th>m%</th>
@@ -242,8 +241,7 @@
 	@else
 	<tr data-toggle="collapse" data-target="#demo{{$key}}" class="accordion-toggle even" title="Click or tap to see more details">
 	@endif
-          <td><b id="expand{{ $test->number }}" class="glyphicon glyphicon-expand"></b></td>
-	  <td><b> {{ $test->number }}</b></td>
+	  <td><b id="expand{{ $test->number }}" class="glyphicon glyphicon-expand"> {{ $test->number }}</b></td>
 	  <td>{{ $test->location }}</td>
 	  <td>{{ number_format($test->density_dry, 1) }}</td>
 	  <td>{{ number_format($test->percent_moisture, 1) }}</td>
