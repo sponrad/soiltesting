@@ -33,7 +33,7 @@
 <!--		<li>{{ HTML::link('/register', 'Register') }}</li>   -->
 		<li>{{ HTML::link('/login', 'Sign In') }}</li>
 	      @else
-		<li><a href="/home">Home</a></li>
+		<li><a href="/home">{{ Auth::user()->account->companyname }} Home</a></li>
 		<li><a href="/settings">Settings</a></li>
 		<li><a href="/logout">Logout</a></li>
 		<!--

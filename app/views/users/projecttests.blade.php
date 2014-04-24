@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('brandlink')
-  <a class="navbar-brand" href="/home">{{$project->name}}</a>
+  <div class="navbar-brand">{{$project->name}}</div>
 @stop
 
 @section('underheader')
@@ -29,6 +29,9 @@
    }
    tr.even td {
      background: #eeefbe;
+   }
+   tr.even:hover, tr.odd:hover{
+     cursor: pointer;
    }
    .notes {
      border: dashed 2px #cc8;
@@ -123,7 +126,7 @@
 
   <script>
 
- $(document).ready( function(){
+   $(document).ready( function(){
      $('#myModal').on('shown.bs.modal', function () {
        $('#elevationInput').focus();
      });
@@ -201,7 +204,15 @@
      $("#proctorInput").change( function(){
        compaction_percent = $("#density_dry").val() / $("#proctorInput").find(":selected").attr("id") * 100;
        $("#compaction_percent").val(compaction_percent.toFixed(1));
-     })
+     });
+
+     $('.collapse').on('show.bs.collapse', function (e) {
+       $(e.target).parent().parent().prev().children().first().children("b").attr("class", "glyphicon glyphicon-collapse-down");
+     });
+
+     $('.collapse').on('hide.bs.collapse', function (e) {
+       $(e.target).parent().parent().prev().children().first().children("b").attr("class", "glyphicon glyphicon-expand");
+     });
 
    });
   </script>
@@ -217,6 +228,7 @@
   @if (count($tests) > 0)
     <table class="table">
       <tr id="tableHead">
+	<th></th>
 	<th>No.</th>
 	<th>Location</th>
 	<th>Dry Dens.</th>
@@ -230,7 +242,8 @@
 	@else
 	<tr data-toggle="collapse" data-target="#demo{{$key}}" class="accordion-toggle even" title="Click or tap to see more details">
 	@endif
-	  <td><b>{{ $test->number }}</b></td>
+          <td><b id="expand{{ $test->number }}" class="glyphicon glyphicon-expand"></b></td>
+	  <td><b> {{ $test->number }}</b></td>
 	  <td>{{ $test->location }}</td>
 	  <td>{{ number_format($test->density_dry, 1) }}</td>
 	  <td>{{ number_format($test->percent_moisture, 1) }}</td>
@@ -238,7 +251,7 @@
 	  <td>{{ number_format($test->percent_compaction(), 1) }}</td>
 	</tr>
 	<tr class="noborder">
-          <td colspan="6" class="hiddenRow">
+          <td colspan="7" class="hiddenRow">
 	    <div class="accordian-body collapse" id="demo{{$key}}">
 	      <p class="testExpand">
 		Elevation: {{ $test->elevation }} | 

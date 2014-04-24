@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('brandlink')
-  <a class="navbar-brand" href="/home">{{$project->name}}</a>
+  <div class="navbar-brand">{{$project->name}}</div>
 @stop
 
 @section('underheader')
@@ -209,13 +209,8 @@
   </ul>
 
   <div class="row">
-    <div class="col-md-6">
-      <h3 id="informationHeading">Notes</h3>
-      <div id="notes" title="Click or tap to edit">@if ( $project->notes != ""){{ $project->notes }}@else Enter notes here @endif</div>
-    </div>
-    
-    <div class="col-md-6">
-      <h3>Project Functions</h3>
+    <div class="col-md-5">
+      <h3>{{ $project->name }}</h3>
       <button class="btn btn-default" data-toggle="modal" data-target="#projectNameModal">Change Project Name</button>
       <button class="btn btn-default" data-toggle="modal" data-target="#exportDataButton" title="Download a file containing project information, proctors, and test data in CSV format">CSV Export</button>      
       {{ Form::open(array('class'=>'form-delete-project', 'role'=>'form')) }}
@@ -223,6 +218,12 @@
       <input type="submit" value="Delete Project" class="btn btn-default" id="deleteProjectButton" title="You will be prompted for confirmation prior to deleting"></input>
       {{ Form::close() }}
     </div>
+
+    <div class="col-md-7">
+      <h3 id="informationHeading">Notes</h3>
+      <div id="notes" title="Click or tap to edit">@if ( $project->notes != ""){{ $project->notes }}@else Enter notes here @endif</div>
+    </div>
+
   </div>
 
   <h3 id="testsHeading">Recent Tests <a href="/home/{{ $project->id}}-{{$project->name}}/tests"><small id="allTestsLink">(see all)</small></a></h3>
