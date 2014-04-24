@@ -230,7 +230,7 @@
       <tr id="tableHead">
 	<th></th>
 	<th>No.</th>
-	<th>Location</th>
+	<th>Loc.</th>
 	<th>Dry Dens.</th>
 	<th>m%</th>
 	<th>Max.</th>
