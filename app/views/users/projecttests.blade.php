@@ -251,7 +251,7 @@
       </tr>
       @foreach($tests as $key => $test)
 	@if ($key % 2 == 0)
-	<tr name={{$test->number}} data-toggle="collapse" data-target="#demo{{$key}}" class="accordion-toggle odd" title="Click or tap to see more details">
+	<tr name="test{{$test->number}}" data-toggle="collapse" data-target="#demo{{$key}}" class="accordion-toggle odd" title="Click or tap to see more details">
 	@else
 	<tr data-toggle="collapse" data-target="#demo{{$key}}" class="accordion-toggle even" title="Click or tap to see more details">
 	@endif

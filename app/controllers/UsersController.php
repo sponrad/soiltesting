@@ -194,7 +194,7 @@ class UsersController extends BaseController {
 
             $test->save();
 
-            return Redirect::to('/home/'.$project->id.'-'.$project->name.'/tests#'.$test->number)->with('message', 'Test Edited');
+            return Redirect::to('/home/'.$project->id.'-'.$project->name.'/tests#test'.$test->number)->with('message', 'Test Edited');
         }
     }
 
