@@ -161,7 +161,7 @@
 
   <h1>Test #{{ $test->number }}</h1>
 
-  {{ Form::open(array('url'=>URL::route('postTest', [$project->id, $project->name, $test->id ]), 'class'=>'form-horizontal', 'role'=>'form')) }}	  
+  {{ Form::open(array('url'=>URL::route('postTest', array($project->id, $project->name, $test->id )), 'class'=>'form-horizontal', 'role'=>'form')) }}	  
   {{ Form::hidden('action', 'edittest') }}
 
   <div class="form-group">

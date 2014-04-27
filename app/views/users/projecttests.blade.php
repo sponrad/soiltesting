@@ -276,7 +276,7 @@
 
 	      <div class="testButtonDiv">
 		<button class="btn btn-danger pull-right deleteButton">Delete</button>
-		<a class="btn btn-info pull-right editButton" href="{{ URL::route('getTest', [$project->id, $project->name, $test->id]) }}">Edit</a>
+		<a class="btn btn-info pull-right editButton" href="{{ URL::route('getTest', array($project->id, $project->name, $test->id)) }}">Edit</a>
 		<div style="clear: both;"></div>
 	      </div>
 	    </div>
