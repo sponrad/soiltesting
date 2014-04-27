@@ -5,59 +5,6 @@
 @stop
 
 @section('underheader')
-  <style>
-   .hiddenRow {
-     padding: 0 !important;
-   }
-   tr {
-
-   }
-   tr td:first-child{
-     border-left: gray 1px solid;
-   }
-   tr td:last-child{
-     border-right: gray 1px solid;
-   }
-   tr.noborder td{
-     border-top: none !important;
-     border-bottom: 1px solid gray;
-     padding: 0px 5px 0px 5px !important;
-   }
-   #tableHead th{
-     background: #d2322d;
-     color: white;
-     border-top: gray 1px solid;
-   }
-   #tableHead th:first-child{
-     border-left: gray 1px solid;
-   }
-   #tableHead th:last-child{
-     border-right: gray 1px solid;
-   }
-   tr.odd td {
-     background: #ffffdf;
-   }
-   tr.even td {
-     background: #eeefbe;
-   }
-   tr.even:hover, tr.odd:hover{
-     cursor: pointer;
-   }
-   .notes {
-     border: dashed 2px #cc8;
-     padding: 10px;
-   }
-   .editableform .form-control {
-     /*width: 400px;*/
-     width: 200%;
-   }
-   .testExpand{
-     padding: 5px;
-   }
-   .testButtonDiv{
-     padding: 10px;
-   }
-  </style>
 @stop
 
 @section('navmenu')
@@ -71,7 +18,7 @@
 	<div class="modal-body">	  
 	  {{ Form::open(array('url'=>'/home/'.$project->id.'-'.$project->name.'/tests', 'class'=>'form-horizontal', 'role'=>'form')) }}	  
 	  {{ Form::hidden('action', 'createtest') }}
-	  {{ Form::hidden('notes', ' ') }}
+	  {{ Form::hidden('notes', '') }}
 
 	  <div class="form-group">
 	    <label for="elevation" class="col-sm-4 ">Elevation</label>
@@ -141,21 +88,6 @@
        $('#elevationInput').focus();
      });
 
-     $.fn.editable.defaults.mode = 'popup'; //popup inline
-
-     $('.notes').each( function(){
-       $(this).editable({
-	 type:  'textarea',
-	 mode: 'inline',
-	 name:  'notes',
-	 params: {
-	   action: 'testnotes',
-	 },
-	 url:   '/editable',  
-	 title: 'Test Notes'
-       });     
-     });     
-
      //fires when wet, dry, or moisture have been changed.
      $("#density_wet, #density_dry, #percent_moisture").change(
        function(e){
@@ -216,18 +148,6 @@
        $("#compaction_percent").val(compaction_percent.toFixed(1));
      });
 
-     $('.collapse').on('show.bs.collapse', function (e) {
-       $(e.target).parent().parent().prev().children().first().children("b").attr("class", "glyphicon glyphicon-collapse-down");
-     });
-
-     $('.collapse').on('hide.bs.collapse', function (e) {
-       $(e.target).parent().parent().prev().children().first().children("b").attr("class", "glyphicon glyphicon-expand");
-     });
-     
-     $('.deleteButton').click( function(e){
-       console.log("delete fired");
-     });
-
    });
   </script>
 @stop
@@ -236,55 +156,85 @@
   <ul class="nav nav-tabs">
     <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}">Overview</a></li>
     <li class="active"><a href="/home/{{ $project->id}}-{{$project->name}}/tests">Tests</a></li>
-    <!-- <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}/files">Files</a></li> -->
   </ul>
-  <br>
-  @if (count($tests) > 0)
-    <table class="table">
-      <tr id="tableHead">
-	<th> No.</th>
-	<th>Loc.</th>
-	<th>Dry Dens.</th>
-	<th>m%</th>
-	<th>Max.</th>
-	<th>rel. %</th>
-      </tr>
-      @foreach($tests as $key => $test)
-	@if ($key % 2 == 0)
-	<tr name={{$test->number}} data-toggle="collapse" data-target="#demo{{$key}}" class="accordion-toggle odd" title="Click or tap to see more details">
-	@else
-	<tr data-toggle="collapse" data-target="#demo{{$key}}" class="accordion-toggle even" title="Click or tap to see more details">
-	@endif
-	  <td><b id="expand{{ $test->number }}" class="glyphicon glyphicon-expand"> {{ $test->number }}</b></td>
-	  <td>{{ $test->location }}</td>
-	  <td class="densityDryTd">{{ number_format($test->density_dry, 1) }}</td>
-	  <td>{{ number_format($test->percent_moisture, 1) }}</td>
-	  <td>{{ number_format($test->proctor->density_dry, 1) }}</td>
-	  <td>{{ number_format($test->percent_compaction(), 1) }}</td>
-	</tr>
-	<tr class="noborder">
-          <td colspan="7" class="hiddenRow">
-	    <div class="accordian-body collapse" id="demo{{$key}}">
-	      <p class="testExpand">
-		Elevation: {{ $test->elevation }} | 
-		Wet Density: {{ number_format($test->density_wet, 1) }} | 
-		Date: {{ $test->created_at->format('m/d/Y H:i') }}
-	      </p>
-	      <p>Notes:</p>
+  <a href="/home/{{ $project->id}}-{{$project->name}}/tests#{{ $test->id }}">Back</a>
 
-	      <div id="notes" title="Click or tap to edit" class="notes" data-pk={{ $test->id }}>@if ( $test->notes != " "){{ $test->notes }} @else Enter notes @endif</div>
+  <h1>Test #{{ $test->number }}</h1>
 
-	      <div class="testButtonDiv">
-		<button class="btn btn-danger pull-right deleteButton">Delete</button>
-		<a class="btn btn-info pull-right editButton" href="{{ URL::route('getTest', [$project->id, $project->name, $test->id]) }}">Edit</a>
-		<div style="clear: both;"></div>
-	      </div>
-	    </div>
-	  </td>
-        </tr>
-    @endforeach
-    </table>
-  @else
-    <p>No tests yet.</p>
-  @endif
+  {{ Form::open(array('url'=>URL::route('postTest', [$project->id, $project->name, $test->id ]), 'class'=>'form-horizontal', 'role'=>'form')) }}	  
+  {{ Form::hidden('action', 'edittest') }}
+
+  <div class="form-group">
+    <label for="elevation" class="col-sm-4 ">Elevation</label>
+    <label for="density_wet" class="col-sm-4 col-sm-offset-2">Wet Density</label>
+
+    <div class="col-sm-4">
+      {{ Form::text('elevation', $test->elevation, array('class'=>'form-control', 'placeholder'=>'elevation', 'id'=>'elevationInput')) }}
+    </div>
+    <div class="col-sm-4 col-sm-offset-2">
+      {{ Form::text('density_wet', number_format($test->density_wet,1), array('class'=>'form-control', 'placeholder'=>'density_wet', 'id'=>'density_wet')) }}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="density_dry" class="col-sm-4">Dry Density</label>
+    <label for="percent_moisture" class="col-sm-4 col-sm-offset-2">Moisture %</label>
+
+    <div class="col-sm-4">
+      {{ Form::text('density_dry', number_format($test->density_dry,1), array('class'=>'form-control', 'placeholder'=>'density_dry', 'id'=>'density_dry')) }}
+    </div>
+    <div class="col-sm-4 col-sm-offset-2">
+      {{ Form::text('percent_moisture', number_format($test->percent_moisture, 1), array('class'=>'form-control', 'placeholder'=>'percent_moisture', 'id'=>'percent_moisture')) }}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="proctor" class="col-sm-4">Proctor</label>
+    <label for="compaction_percent" class="col-sm-4 col-sm-offset-2">Compaction %</label>
+
+    <div class="col-sm-4">
+      <select class="form-control" name="proctor" id="proctorInput">
+	@foreach($proctors as $key => $proctor)
+	  <option id="{{ number_format($proctor->density_dry, 1) }}" value="{{$proctor->id}}">{{ number_format($proctor->density_dry, 1) }} @ {{ number_format($proctor->percent_moisture, 1) }}% - {{$proctor->name}}</option>
+	@endforeach
+      </select>
+    </div>
+    <div class="col-sm-4 col-sm-offset-2">
+      {{ Form::text('compaction_percent', number_format($test->percent_compaction(), 1), array('class'=>'form-control', 'placeholder'=>'compaction_percent', 'id'=>'compaction_percent', 'disabled')) }}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="location" class="col-sm-3">Location</label>
+    <div class="col-sm-12">
+      {{ Form::textarea('location', $test->location, array('class'=>'form-control', 'placeholder'=>'location', 'size'=>'50x1')) }}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="notes" class="col-sm-3">Notes</label>
+    <div class="col-sm-12">
+      {{ Form::textarea('notes', $test->notes, array('class'=>'form-control', 'placeholder'=>'notes', 'size'=>'50x1')) }}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="retest" class="col-sm-4">Retest of No:</label>
+    <label for="date" class="col-sm-4 col-sm-offset-2">Date:</label>
+
+    <div class="col-sm-4">
+      {{ Form::text('retest', $test->retest_of_number ? $test->retest_of_number : "", array('class'=>'form-control', 'placeholder'=>'retest', 'id'=>'retest')) }}
+    </div>
+    <div class="col-sm-4 col-sm-offset-2">
+      {{ Form::text('date', $test->created_at->format('m/d/Y H:i'), array('class'=>'form-control', 'placeholder'=>'date', 'id'=>'date')) }}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-9">
+      {{ Form::submit('Save', array('class'=>'btn btn-large btn-primary')) }}
+    </div>
+  </div>
+  
+  {{ Form::close() }}
 @stop

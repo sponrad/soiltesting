@@ -16,6 +16,8 @@ class UsersController extends BaseController {
             'getProjectFiles',
             'postProjectFiles',
             'postEditable',
+            'getTest',
+            'postTest'
         )));
     }
 
@@ -156,6 +158,43 @@ class UsersController extends BaseController {
             $test->save();
 
             return Redirect::to('/home/'.$project->id.'-'.$project->name.'/tests')->with('message', 'Test Added');
+        }
+    }
+
+    public function getTest($projectId, $projectName, $testId){
+        $user = Auth::user();
+        $project = Project::find($projectId);
+        $test = Test::find($testId);
+        $proctors = Proctor::where("project_id", "=", $project->id)->get();
+        
+        return View::make('users.test')->with(
+            array(
+                "project" => $project,
+                "test" => $test,
+                "proctors" => $proctors,
+            ));
+    }
+
+    public function postTest($projectId, $projectName, $testId){
+        $action = Input::get("action");
+        $user = Auth::user();
+        $project = Project::find($projectId);
+        $test = Test::find($testId);
+
+        if ($action == "edittest"){
+            $test->density_wet = Input::get('density_wet');
+            $test->density_dry = Input::get('density_dry');
+            $test->percent_moisture = Input::get('percent_moisture');
+            $proctor = Proctor::find( intval(Input::get('proctor')) );
+            $test->proctor()->associate( $proctor );
+            $test->elevation = Input::get('elevation');
+            $test->location = Input::get('location');
+            $test->notes = Input::get('notes');
+            $test->retest_of_number = Input::get('retest') ? Input::get('retest') : null;
+
+            $test->save();
+
+            return Redirect::to('/home/'.$project->id.'-'.$project->name.'/tests#'.$test->id)->with('message', 'Test Edited');
         }
     }
 
