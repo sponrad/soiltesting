@@ -47,9 +47,13 @@
      border: dashed 2px #cc8;
      padding: 10px;
    }
-   .editableform .form-control {
+   .editable-input {
      /*width: 400px;*/
      width: 200%;
+   }
+   .editableform .form-control {
+     /*width: 400px;*/
+     width: 100%;
    }
    .testExpand{
      padding: 5px;
@@ -224,10 +228,6 @@
      $('.collapse').on('hide.bs.collapse', function (e) {
        $(e.target).parent().parent().prev().children().first().children("b").attr("class", "glyphicon glyphicon-expand");
      });
-     
-     $('.deleteButton').click( function(e){
-       console.log("delete fired");
-     });
 
    });
   </script>
@@ -276,7 +276,6 @@
 	      <div id="notes" title="Click or tap to edit" class="notes" data-pk={{ $test->id }}>{{ $test->notes }}</div>
 
 	      <div class="testButtonDiv">
-		<button class="btn btn-danger pull-right deleteButton">Delete</button>
 		<a class="btn btn-info pull-right editButton" href="{{ URL::route('getTest', array($project->id, $project->name, $test->id)) }}">Edit</a>
 		<div style="clear: both;"></div>
 	      </div>

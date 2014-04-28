@@ -157,9 +157,8 @@
     <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}">Overview</a></li>
     <li class="active"><a href="/home/{{ $project->id}}-{{$project->name}}/tests">Tests</a></li>
   </ul>
-  <a href="/home/{{ $project->id}}-{{$project->name}}/tests#{{ $test->id }}">Back</a>
 
-  <h1>Test #{{ $test->number }}</h1>
+  <h1>Test {{ $test->number }}</h1>
 
   {{ Form::open(array('url'=>URL::route('postTest', array($project->id, $project->name, $test->id )), 'class'=>'form-horizontal', 'role'=>'form')) }}	  
   {{ Form::hidden('action', 'edittest') }}
@@ -233,6 +232,7 @@
   <div class="form-group">
     <div class="col-sm-offset-3 col-sm-9">
       {{ Form::submit('Save', array('class'=>'btn btn-large btn-primary')) }}
+      <a class="btn btn-default" href="/home/{{ $project->id}}-{{$project->name}}/tests#{{ $test->id }}">Cancel</a>
     </div>
   </div>
   
