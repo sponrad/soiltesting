@@ -158,40 +158,40 @@
     <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}/tests">Tests</a></li>
   </ul>
 
-  <h1>{{ $proctor->name }}</h1>
+  <h1>{{ $editingproctor->name }}</h1>
 
-  {{ Form::open(array('url'=>URL::route('postProctor', array($project->id, $project->name, $proctor->id )), 'class'=>'form-horizontal', 'role'=>'form')) }}	  
+  {{ Form::open(array('url'=>URL::route('postProctor', array($project->id, $project->name, $editingproctor->id )), 'class'=>'form-horizontal', 'role'=>'form')) }}	  
   {{ Form::hidden('action', 'editproctor') }}
 
   <div class="form-group">
     <label for="name" class="col-sm-4 control-label">Name</label>
     <div class="col-sm-8">
-      {{ Form::text('name', $proctor->name, array('class'=>'input-block-level', 'placeholder'=>'Name')) }}
+      {{ Form::text('name', $editingproctor->name, array('class'=>'input-block-level', 'placeholder'=>'Name')) }}
     </div>
   </div>
   <div class="form-group">
     <label for="description" class="col-sm-4 control-label">Description</label>
     <div class="col-sm-8">
-      {{ Form::text('description', $proctor->description, array('class'=>'input-block-level', 'placeholder'=>'Description')) }}
+      {{ Form::text('description', $editingproctor->description, array('class'=>'input-block-level', 'placeholder'=>'Description')) }}
     </div>
   </div>
 <!--   <div class="form-group">
     <label for="date" class="col-sm-4 control-label">Date</label>
     <div class="col-sm-8">
-      {{ Form::text('date', $proctor->date, array('class'=>'input-block-level', 'placeholder'=>'Date')) }}
+      {{ Form::text('date', $editingproctor->date, array('class'=>'input-block-level', 'placeholder'=>'Date')) }}
     </div>
   </div> -->
-  <!--	  {{ Form::text('density_wet', number_format($proctor->density_wet, 1), array('class'=>'input-block-level', 'placeholder'=>'Wet Density')) }} --> 
+  <!--	  {{ Form::text('density_wet', number_format($editingproctor->density_wet, 1), array('class'=>'input-block-level', 'placeholder'=>'Wet Density')) }} --> 
   <div class="form-group">
     <label for="density_dry" class="col-sm-4 control-label">Dry Density</label>
     <div class="col-sm-8">
-      {{ Form::text('density_dry', number_format($proctor->density_dry, 1), array('class'=>'input-block-level', 'placeholder'=>'Dry Density')) }}
+      {{ Form::text('density_dry', number_format($editingproctor->density_dry, 1), array('class'=>'input-block-level', 'placeholder'=>'Dry Density')) }}
     </div>
   </div>
   <div class="form-group">
     <label for="percent_moisture" class="col-sm-4 control-label">Percent Moisture</label>
     <div class="col-sm-8">
-      {{ Form::text('percent_moisture', number_format($proctor->percent_moisture, 1), array('class'=>'input-block-level', 'placeholder'=>'Moisture %')) }}
+      {{ Form::text('percent_moisture', number_format($editingproctor->percent_moisture, 1), array('class'=>'input-block-level', 'placeholder'=>'Moisture %')) }}
     </div>
   </div>
   <div class="form-group">

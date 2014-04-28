@@ -204,13 +204,13 @@ class UsersController extends BaseController {
     public function getProctor($projectId, $projectName, $proctorId){
         $user = Auth::user();
         $project = Project::find($projectId);
-        $proctor = Proctor::find($proctorId);
+        $editingproctor = Proctor::find($proctorId);
         $proctors = Proctor::where("project_id", "=", $project->id)->get();
         
         return View::make('users.proctor')->with(
             array(
                 "project" => $project,
-                "proctor" => $proctor,
+                "editingproctor" => $proctor,
                 "proctors" => $proctors,
             ));
     }
@@ -222,7 +222,6 @@ class UsersController extends BaseController {
         $proctor = Proctor::find($proctorId);
 
         if ($action == "editproctor"){
-            $proctor->project()->associate($project);
             $proctor->name = Input::get('name');
             $proctor->description = Input::get('description');
             //$proctor->date = Input::get('date');
