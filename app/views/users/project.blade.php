@@ -28,8 +28,12 @@
      border: dashed 2px #cc8;
      padding: 10px;
    }
+   .editable-input {
+     width: 200%;
+   }
    .editableform .form-control {
-     width: 400px;
+     /*width: 400px;*/
+     width: 100%;
    }
    #allTestsLink{
      color: #eee;
