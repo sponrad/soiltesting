@@ -210,7 +210,7 @@ class UsersController extends BaseController {
         return View::make('users.proctor')->with(
             array(
                 "project" => $project,
-                "editingproctor" => $proctor,
+                "editingproctor" => $editingproctor,
                 "proctors" => $proctors,
             ));
     }
