@@ -158,81 +158,47 @@
     <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}/tests">Tests</a></li>
   </ul>
 
-  <h1>Test {{ $test->number }}</h1>
+  <h1>{{ $proctor->name }}</h1>
 
-  {{ Form::open(array('url'=>URL::route('postTest', array($project->id, $project->name, $test->id )), 'class'=>'form-horizontal', 'role'=>'form')) }}	  
-  {{ Form::hidden('action', 'edittest') }}
+  {{ Form::open(array('url'=>URL::route('postProctor', array($project->id, $project->name, $proctor->id )), 'class'=>'form-horizontal', 'role'=>'form')) }}	  
+  {{ Form::hidden('action', 'editproctor') }}
 
   <div class="form-group">
-    <label for="elevation" class="col-sm-4 ">Elevation</label>
-    <label for="density_wet" class="col-sm-4 col-sm-offset-2">Wet Density</label>
-
-    <div class="col-sm-4">
-      {{ Form::text('elevation', $test->elevation, array('class'=>'form-control', 'placeholder'=>'elevation', 'id'=>'elevationInput')) }}
-    </div>
-    <div class="col-sm-4 col-sm-offset-2">
-      {{ Form::text('density_wet', number_format($test->density_wet,1), array('class'=>'form-control', 'placeholder'=>'density_wet', 'id'=>'density_wet')) }}
+    <label for="name" class="col-sm-4 control-label">Name</label>
+    <div class="col-sm-8">
+      {{ Form::text('name', $proctor->name, array('class'=>'input-block-level', 'placeholder'=>'Name')) }}
     </div>
   </div>
-
   <div class="form-group">
-    <label for="density_dry" class="col-sm-4">Dry Density</label>
-    <label for="percent_moisture" class="col-sm-4 col-sm-offset-2">Moisture %</label>
-
-    <div class="col-sm-4">
-      {{ Form::text('density_dry', number_format($test->density_dry,1), array('class'=>'form-control', 'placeholder'=>'density_dry', 'id'=>'density_dry')) }}
-    </div>
-    <div class="col-sm-4 col-sm-offset-2">
-      {{ Form::text('percent_moisture', number_format($test->percent_moisture, 1), array('class'=>'form-control', 'placeholder'=>'percent_moisture', 'id'=>'percent_moisture')) }}
+    <label for="description" class="col-sm-4 control-label">Description</label>
+    <div class="col-sm-8">
+      {{ Form::text('description', $proctor->description, array('class'=>'input-block-level', 'placeholder'=>'Description')) }}
     </div>
   </div>
-
-  <div class="form-group">
-    <label for="proctor" class="col-sm-4">Maximum Density</label>
-    <label for="compaction_percent" class="col-sm-4 col-sm-offset-2">Compaction %</label>
-
-    <div class="col-sm-4">
-      <select class="form-control" name="proctor" id="proctorInput">
-	@foreach($proctors as $key => $proctor)
-	  <option id="{{ number_format($proctor->density_dry, 1) }}" value="{{$proctor->id}}">{{ number_format($proctor->density_dry, 1) }} @ {{ number_format($proctor->percent_moisture, 1) }}% - {{$proctor->name}}</option>
-	@endforeach
-      </select>
+<!--   <div class="form-group">
+    <label for="date" class="col-sm-4 control-label">Date</label>
+    <div class="col-sm-8">
+      {{ Form::text('date', $proctor->date, array('class'=>'input-block-level', 'placeholder'=>'Date')) }}
     </div>
-    <div class="col-sm-4 col-sm-offset-2">
-      {{ Form::text('compaction_percent', number_format($test->percent_compaction(), 1), array('class'=>'form-control', 'placeholder'=>'compaction_percent', 'id'=>'compaction_percent', 'disabled')) }}
+  </div> -->
+  <!--	  {{ Form::text('density_wet', number_format($proctor->density_wet, 1), array('class'=>'input-block-level', 'placeholder'=>'Wet Density')) }} --> 
+  <div class="form-group">
+    <label for="density_dry" class="col-sm-4 control-label">Dry Density</label>
+    <div class="col-sm-8">
+      {{ Form::text('density_dry', number_format($proctor->density_dry, 1), array('class'=>'input-block-level', 'placeholder'=>'Dry Density')) }}
     </div>
   </div>
-
   <div class="form-group">
-    <label for="location" class="col-sm-3">Location</label>
-    <div class="col-sm-12">
-      {{ Form::textarea('location', $test->location, array('class'=>'form-control', 'placeholder'=>'location', 'size'=>'50x1')) }}
+    <label for="percent_moisture" class="col-sm-4 control-label">Percent Moisture</label>
+    <div class="col-sm-8">
+      {{ Form::text('percent_moisture', number_format($proctor->percent_moisture, 1), array('class'=>'input-block-level', 'placeholder'=>'Moisture %')) }}
     </div>
   </div>
-
   <div class="form-group">
-    <label for="notes" class="col-sm-3">Notes</label>
-    <div class="col-sm-12">
-      {{ Form::textarea('notes', $test->notes, array('class'=>'form-control', 'placeholder'=>'notes', 'size'=>'50x1')) }}
-    </div>
-  </div>
+    <div class="col-sm-offset-4 col-sm-8">
+      {{ Form::submit('Save Maximum Density', array('class'=>'btn btn-large btn-primary')) }}
 
-  <div class="form-group">
-    <label for="retest" class="col-sm-4">Retest of No:</label>
-    <label for="date" class="col-sm-4 col-sm-offset-2">Date:</label>
-
-    <div class="col-sm-4">
-      {{ Form::text('retest', $test->retest_of_number ? $test->retest_of_number : "", array('class'=>'form-control', 'placeholder'=>'retest', 'id'=>'retest')) }}
-    </div>
-    <div class="col-sm-4 col-sm-offset-2">
-      {{ Form::text('date', $test->created_at->format('m/d/Y H:i'), array('class'=>'form-control', 'placeholder'=>'date', 'id'=>'date')) }}
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="col-sm-offset-3 col-sm-9">
-      {{ Form::submit('Save', array('class'=>'btn btn-large btn-primary')) }}
-      <a class="btn btn-default" href="/home/{{ $project->id}}-{{$project->name}}/tests#{{ $test->id }}">Cancel</a>
+      <a class="btn btn-default" href="/home/{{ $project->id}}-{{$project->name}}">Cancel</a>
     </div>
   </div>
   

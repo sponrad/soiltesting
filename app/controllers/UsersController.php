@@ -17,7 +17,9 @@ class UsersController extends BaseController {
             'postProjectFiles',
             'postEditable',
             'getTest',
-            'postTest'
+            'postTest',
+            'getProctor',
+            'postProctor'
         )));
     }
 
@@ -103,7 +105,7 @@ class UsersController extends BaseController {
             $proctor->density_wet = $proctor->density_dry * (1 + $proctor->percent_moisture/100);
             $proctor->save();
 
-            return Redirect::to('/home/'.$project->id.'-'.$project->name)->with('message', 'Project created');
+            return Redirect::to('/home/'.$project->id.'-'.$project->name)->with('message', 'Maximum Density Added');
         }
 
         if ($action == "changeprojectname"){
@@ -196,6 +198,43 @@ class UsersController extends BaseController {
 
             return Redirect::to('/home/'.$project->id.'-'.$project->name.'/tests#test'.$test->number)->with('message', 'Test Edited');
         }
+    }
+
+    public function getProctor($projectId, $projectName, $proctorId){
+        $user = Auth::user();
+        $project = Project::find($projectId);
+        $proctor = Proctor::find($proctorId);
+        $proctors = Proctor::where("project_id", "=", $project->id)->get();
+        
+        return View::make('users.proctor')->with(
+            array(
+                "project" => $project,
+                "proctor" => $proctor,
+                "proctors" => $proctors,
+            ));
+    }
+
+    public function postProctor($projectId, $projectName, $proctorId){
+        $action = Input::get("action");
+        $user = Auth::user();
+        $project = Project::find($projectId);
+        $proctor = Proctor::find($proctorId);
+
+        if ($action == "editproctor"){
+            $proctor->project()->associate($project);
+            $proctor->name = Input::get('name');
+            $proctor->description = Input::get('description');
+            //$proctor->date = Input::get('date');
+            $proctor->density_dry = Input::get('density_dry');
+            $proctor->percent_moisture = Input::get('percent_moisture');
+            $proctor->density_wet = $proctor->density_dry * (1 + $proctor->percent_moisture/100);
+            $proctor->save();
+
+            //TODO check for any affected tests
+
+            return Redirect::to('/home/'.$project->id.'-'.$project->name)->with('message', 'Maximum Density Saved');
+        }
+
     }
 
     public function getProjectFiles($projectId, $projectName){

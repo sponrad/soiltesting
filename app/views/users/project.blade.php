@@ -24,6 +24,9 @@
      padding: 5px 10px;
      border-radius: 5px;
    }
+   tr:hover td{
+     background: yellow;
+   }
    #notes{
      border: dashed 2px #cc8;
      padding: 10px;
@@ -238,10 +241,10 @@
     <table class="table">
       <tr>
 	<th>No.</th>
-	<th>Dry Dens.</th>
-	<th>m%</th>
-	<th>rel. %</th>
-	<th>Max.</th>
+	<th title="Dry Density">Dry Dens.</th>
+	<th title="Percent Moisture">m%</th>
+	<th title="Percent Relative Compaction">rel. %</th>
+	<th title="Maximum Dry Density">Max.</th>
       </tr>
       @foreach($tests as $key => $test)
 	<tr>
@@ -264,16 +267,19 @@
   <br><br>
   
   @if (count($proctors) > 0)
-    <table class="table">
+    <table class="table" id="proctorTable">
       <tr>
 	<th>Name</th>
-	<th>Dry Density</th>
+	<th>Max. Dry Density</th>
 	<th>Percent Moisture</th>
 	<th>Description</th>
       </tr>
     @foreach($proctors as $key => $proctor)
       <tr>
-	<td>{{ $proctor->name }}</td>
+	<td>
+	  <a href="{{ URL::route("getProctor", array($project->id, $project->name, $proctor->id) ) }}" class="glyphicon glyphicon-edit"></a>
+	  {{ $proctor->name }}
+	</td>
 	<td>{{ number_format($proctor->density_dry, 1) }}</td>
 	<td>{{ number_format( $proctor->percent_moisture, 1) }}</td>
 	<td>{{ $proctor->description }}</td>
@@ -302,12 +308,12 @@
 	      {{ Form::text('description', null, array('class'=>'input-block-level', 'placeholder'=>'Description')) }}
 	    </div>
 	  </div>
-	  <div class="form-group">
+<!-- 	  <div class="form-group">
 	    <label for="date" class="col-sm-4 control-label">Date</label>
 	    <div class="col-sm-8">
 	      {{ Form::text('date', null, array('class'=>'input-block-level', 'placeholder'=>'Date')) }}
 	    </div>
-	  </div>
+	  </div> -->
 	  <!--	  {{ Form::text('density_wet', null, array('class'=>'input-block-level', 'placeholder'=>'Wet Density')) }} --> 
 	  <div class="form-group">
 	    <label for="density_dry" class="col-sm-4 control-label">Dry Density</label>

@@ -37,6 +37,15 @@ Route::post('/home/{projectId}-{projectName}/test/{testId}', array(
     'uses'=>'UsersController@postTest'
 ));
 
+Route::get('/home/{projectId}-{projectName}/proctor/{proctorId}', array(
+    'as'=>'getProctor',
+    'uses'=>'UsersController@getProctor'
+));
+Route::post('/home/{projectId}-{projectName}/proctor/{proctorId}', array(
+    'as'=>'postProctor', 
+    'uses'=>'UsersController@postProctor'
+));
+
 Route::get('/home/{projectId}-{projectName}/files', 'UsersController@getProjectFiles');
 
 Route::post('/upload/{folderId}', 'UploadController@postUploads');

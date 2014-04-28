@@ -43,6 +43,9 @@
    tr.even:hover, tr.odd:hover{
      cursor: pointer;
    }
+   tr.even:hover td, tr.odd:hover td{
+     background: yellow;
+   }
    .notes {
      border: dashed 2px #cc8;
      padding: 10px;
@@ -244,11 +247,11 @@
     <table class="table">
       <tr id="tableHead">
 	<th> No.</th>
-	<th>Loc.</th>
-	<th>Dry Dens.</th>
-	<th>m%</th>
-	<th>Max.</th>
-	<th>rel. %</th>
+	<th title="Location of Test">Loc.</th>
+	<th title="Dry Density">Dry Dens.</th>
+	<th title="Percent Moisture">m%</th>
+	<th title="Maximum Dry Density">Max.</th>
+	<th title="Relative Percent Compaction">rel. %</th>
       </tr>
       @foreach($tests as $key => $test)
 	@if ($key % 2 == 0)
@@ -276,7 +279,7 @@
 	      <div id="notes" title="Click or tap to edit" class="notes" data-pk={{ $test->id }}>{{ $test->notes }}</div>
 
 	      <div class="testButtonDiv">
-		<a class="btn btn-info pull-right editButton" href="{{ URL::route('getTest', array($project->id, $project->name, $test->id)) }}">Edit</a>
+		<a class="btn btn-info pull-right editButton" href="{{ URL::route('getTest', array($project->id, $project->name, $test->id)) }}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
 		<div style="clear: both;"></div>
 	      </div>
 	    </div>
