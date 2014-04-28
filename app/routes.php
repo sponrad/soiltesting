@@ -25,6 +25,8 @@ Route::post('/home', 'UsersController@postHome');
 Route::get('/home/{projectId}-{projectName}', 'UsersController@getProject');
 Route::post('/home/{projectId}-{projectName}', 'UsersController@postProject');
 
+Route::get('/home/{projectId}-{projectName}/export', 'UsersController@getProjectExport');
+
 Route::get('/home/{projectId}-{projectName}/tests', 'UsersController@getProjectTests');
 Route::post('/home/{projectId}-{projectName}/tests', 'UsersController@postProjectTests');
 

@@ -19,7 +19,8 @@ class UsersController extends BaseController {
             'getTest',
             'postTest',
             'getProctor',
-            'postProctor'
+            'postProctor',
+            'getProjectExport',
         )));
     }
 
@@ -234,6 +235,24 @@ class UsersController extends BaseController {
 
             return Redirect::to('/home/'.$project->id.'-'.$project->name)->with('message', 'Maximum Density Saved');
         }
+    }
+
+    public function getProjectExport($projectId, $projectName){
+        $action = Input::get("action");
+        $user = Auth::user();
+        $project = Project::find($projectId);
+        $proctors = Proctor::where("project_id", "=", $project->id)->get();
+        $tests = Test::where("project_id", "=", $project->id)->orderBy("number", "DESC")->get();
+        
+        foreach ($tests as $row) {
+            $output=  implode(",",$row->toArray());
+        }
+        $headers = array(
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="ExportFileName.csv"',
+        );
+ 
+        return Response::make(rtrim($output, "\n"), 200, $headers);
 
     }
 

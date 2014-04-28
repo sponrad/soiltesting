@@ -220,7 +220,7 @@
     <div class="col-md-5">
       <h3>{{ $project->name }}</h3>
       <button class="btn btn-default" data-toggle="modal" data-target="#projectNameModal">Change Project Name</button>
-      <button class="btn btn-default" data-toggle="modal" data-target="#exportDataButton" title="Download a file containing project information, proctors, and test data in CSV format">CSV Export</button>      
+      <a class="btn btn-default" data-toggle="modal" data-target="#exportDataButton" title="Download a file containing project information, proctors, and test data in CSV format" href="/home/{{ $project->id }}-{{ $project->name }}/export">CSV Export</a>      
       {{ Form::open(array('class'=>'form-delete-project', 'role'=>'form')) }}
       <input type="hidden" name="action" value="deleteproject" />
       <input type="submit" value="Delete Project" class="btn btn-default" id="deleteProjectButton" title="You will be prompted for confirmation prior to deleting"></input>
