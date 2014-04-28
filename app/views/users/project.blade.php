@@ -132,6 +132,7 @@
        pk:    {{ $project->id }},
        mode: 'inline',
        name:  'notes',
+       emptytext: "Add notes here",
        params: {
 	 action: 'projectnotes'
        },
@@ -221,7 +222,7 @@
 
     <div class="col-md-7">
       <h3 id="informationHeading">Notes</h3>
-      <div id="notes" title="Click or tap to edit">@if ( $project->notes != ""){{ $project->notes }}@else Enter notes here @endif</div>
+      <div id="notes" title="Click or tap to edit" placeholder="Enter notes here">{{ $project->notes }}</div>
     </div>
 
   </div>

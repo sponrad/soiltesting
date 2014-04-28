@@ -148,6 +148,7 @@
 	 type:  'textarea',
 	 mode: 'inline',
 	 name:  'notes',
+         emptytext: "Add notes here",
 	 params: {
 	   action: 'testnotes',
 	 },
@@ -268,7 +269,7 @@
 	      </p>
 	      <p>Notes:</p>
 
-	      <div id="notes" title="Click or tap to edit" class="notes" data-pk={{ $test->id }}>@if ( $test->notes != " "){{ $test->notes }} @else Enter notes @endif</div>
+	      <div id="notes" title="Click or tap to edit" class="notes" data-pk={{ $test->id }}>{{ $test->notes }}</div>
 
 	      <div class="testButtonDiv">
 		<button class="btn btn-danger pull-right">Delete</button>
