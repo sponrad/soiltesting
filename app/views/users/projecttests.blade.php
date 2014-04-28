@@ -102,7 +102,7 @@
 	  </div>
 
 	  <div class="form-group">
-	    <label for="proctor" class="col-sm-4">Proctor</label>
+	    <label for="proctor" class="col-sm-4">Maximum Density</label>
 	    <label for="compaction_percent" class="col-sm-4 col-sm-offset-2">Compaction %</label>
 
 	    <div class="col-sm-4">

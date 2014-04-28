@@ -82,7 +82,7 @@
 	  </div>
 
 	  <div class="form-group">
-	    <label for="proctor" class="col-sm-4">Proctor</label>
+	    <label for="proctor" class="col-sm-4">Maximum Density</label>
 	    <label for="compaction_percent" class="col-sm-4 col-sm-offset-2">Compaction %</label>
 
 	    <div class="col-sm-4">
@@ -257,9 +257,9 @@
     <p>No tests yet.</p>
   @endif
 
-  <h3 id="proctorsHeading">Proctors</h3>
+  <h3 id="proctorsHeading">Maximum Densities</h3>
 
-  <button class="btn btn-primary" data-toggle="modal" data-target="#proctorModal">Add a Proctor</button>
+  <button class="btn btn-primary" data-toggle="modal" data-target="#proctorModal">Add a Maximum Density</button>
 
   <br><br>
   
@@ -323,7 +323,7 @@
 	  </div>
 	  <div class="form-group">
 	    <div class="col-sm-offset-4 col-sm-8">
-	      {{ Form::submit('Add Proctor', array('class'=>'btn btn-large btn-primary')) }}
+	      {{ Form::submit('Add Maximum Density', array('class'=>'btn btn-large btn-primary')) }}
 	    </div>
 	  </div>
 	  {{ Form::close() }}
