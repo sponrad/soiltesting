@@ -237,22 +237,34 @@ class UsersController extends BaseController {
     }
 
     public function getProjectExport($projectId, $projectName){
-        $action = Input::get("action");
         $user = Auth::user();
         $project = Project::find($projectId);
         $proctors = Proctor::where("project_id", "=", $project->id)->get();
         $tests = Test::where("project_id", "=", $project->id)->orderBy("number", "DESC")->get();
-        
-        foreach ($tests as $row) {
-            $output=  implode(",",$row->toArray());
+
+        $file = fopen('file.csv', 'w');
+
+        $output = "";
+
+        $output.= $project->name."\r\n".$project->account->companyname."\r\n";
+
+        $output.="\r\nMaximum Densities:\r\n";
+        $output.="ID, Created, Edited, Project ID, Name, Date, Wet Density, Dry Density, Percent Moisture, Description\r\n";
+        foreach ($proctors as $row) {
+            $output.=  implode(",",$row->toArray()) . "\r\n";
         }
+        $output.= "\r\nTests:\r\n";
+        $output.="ID, Created, Edited, Project ID, Maximum Density ID, Number, Date, Elevation, Latitude, Longitude, Description, Location, Notes, Wet Density, Dry Density, Percent Moisture, Density Required, Retest of Number, Pass, Relative Compaction\r\n";
+        foreach ($tests as $row) {
+            $output.=  implode(",",$row->toArray()) . ",".$row->percent_compaction().",\r\n";
+        }
+
         $headers = array(
             'Content-Type' => 'text/csv',
-            'Content-Disposition' => 'attachment; filename="ExportFileName.csv"',
+            'Content-Disposition' => 'attachment; filename="'.$project->name.'.csv"',
         );
- 
-        return Response::make(rtrim($output, "\n"), 200, $headers);
 
+        return Response::make(rtrim($output, "\n"), 200, $headers);
     }
 
     public function getProjectFiles($projectId, $projectName){
