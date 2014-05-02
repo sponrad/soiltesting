@@ -35,6 +35,22 @@ class UsersController extends BaseController {
     public function getContact() {
         return View::make('users.contact');
     }
+    public function postContact() {
+        $email = Input::get("email");
+        $mess = Input::get("mess");
+        $trap = Input::get("email_address");
+
+        $subject = "DensityPro contact ".$email;
+        
+        if ($trap == ""){
+            Mail::send('emails.contact_form', array('email'=>$email, 'mess'=>$mess), function($message) use ($subject){
+            $message->to("conrad@devlabtech.com")->subject($subject);
+        }
+            );
+        }
+
+        return Redirect::to('/contact')->with('message', 'Message sent');
+    }
 
     public function getHelp() {
         return View::make('users.help');

@@ -22,6 +22,7 @@ Route::get('/logout', 'UsersController@getLogout');
 Route::get('/about', 'UsersController@getAbout');
 Route::get('/features', 'UsersController@getFeatures');
 Route::get('/contact', 'UsersController@getContact');
+Route::post('/contact', 'UsersController@postContact');
 Route::get('/help', 'UsersController@getHelp');
 
 Route::get('/home', 'UsersController@getHome');

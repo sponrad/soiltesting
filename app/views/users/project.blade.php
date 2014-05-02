@@ -287,7 +287,7 @@
     @endforeach
     </table>
   @else
-    <p>No proctors yet.</p>
+    <p>No maximum densities yet.</p>
   @endif
 
   <div class="modal fade" id="proctorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

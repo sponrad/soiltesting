@@ -81,7 +81,7 @@
 	  <br><br>
 	  @if ($project->tests->count() > 0)
 	  <p class="testDiv">{{ $project->tests->count()}} Tests</p>
-	  <p class="testDiv">Last tested: {{ $project->tests->last()->created_at->format('n/d/y H:i')  }}</p>
+	  <p class="testDiv">Latest: {{ $project->tests->last()->created_at->format('n/d/y H:i')  }}</p>
 	  @endif
 	</a>
       </div>

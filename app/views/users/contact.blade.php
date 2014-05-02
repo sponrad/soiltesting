@@ -4,6 +4,14 @@
   <div class="navbar-brand">DensityPro</div>  
 @stop
 
+@section('underbody') 
+  <script>
+   $(document).ready(function(){
+     $("#email_address").hide();
+   });
+  </script>
+@stop
+
 @section('content') 
   <div class="row">
     <div class="col-md-6 col-md-offset-2">
@@ -19,9 +27,11 @@
 	@endif
       </div>
 
+      <input type="text" name="email_address" id="email_address" title=""/>
+
       <div class="form-group">
-	<label for="message">Message</label>
-	{{ Form::textarea('message', null, array('class'=>'input-block-level', 'placeholder'=>'Message')) }}
+	<label for="mess">Message</label>
+	{{ Form::textarea('mess', null, array('class'=>'input-block-level', 'placeholder'=>'Message')) }}
       </div>
       
       {{ Form::submit('Contact', array('class'=>'btn btn-large btn-primary btn-block'))}}
