@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('brandlink')
-  <a class="navbar-brand" href="/home">{{ Auth::user()->account->companyname }}</a>  
+  <div class="navbar-brand">{{ Auth::user()->account->companyname }}</div>
 @stop
 
 @section('underbody')
@@ -17,21 +17,24 @@
       {{ Session::get('message') }}
     </div>
   @endif
+  <div class="row">
+    <div class="col-md-6 col-md-offset-2">
+      <h2>Settings</h2>
 
-  <h2>Settings</h2>
+      <h4>{{ Auth::user()->email }}</h4>
 
-  <h4>{{ Auth::user()->email }}</h4>
-
-  {{ Form::open(array('url'=>'/settings', 'class'=>'form-signup', 'role'=>'form')) }}
-    <div class="form-group">
-      <p>Change Password</p>
-      <input type="password" name="password" class="form-control" placeholder="Password"> 
-      <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password">
+      {{ Form::open(array('url'=>'/settings', 'class'=>'form-signup', 'role'=>'form')) }}
+      <div class="form-group">
+	<p>Change Password</p>
+	<input type="password" name="password" class="form-control" placeholder="Password"> 
+	<input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password">
+      </div>
+      
+      <div class="form-group">
+	<p>Billing</p>
+      </div>
+      {{ Form::submit('Save', array('class'=>'btn btn-large btn-primary btn-block'))}}
+      {{ Form::close() }}
     </div>
-    
-    <div class="form-group">
-      <p>Billing</p>
-    </div>
-    {{ Form::submit('Save', array('class'=>'btn btn-large btn-primary btn-block'))}}
-    {{ Form::close() }}
+  </div>
 @stop
