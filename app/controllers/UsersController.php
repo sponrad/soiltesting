@@ -36,6 +36,10 @@ class UsersController extends BaseController {
         return View::make('users.contact');
     }
 
+    public function getHelp() {
+        return View::make('users.help');
+    }
+
     public function getRegister() {
         return View::make('users.register');
     }
