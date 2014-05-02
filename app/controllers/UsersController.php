@@ -333,7 +333,11 @@ class UsersController extends BaseController {
         $password_confirmation = Input::get('password_confirmation');
 
         if ($password == $password_confirmation && $password != ""){
-            $user->password = Hash::make(Input::get('password'));                    }
+            $user->password = Hash::make(Input::get('password'));
+        }
+        else {
+            return Redirect::to('/settings')->with('message', 'Passwords must match');            
+        }
 
         $user->save();
         
