@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('brandlink')
-  <a class="navbar-brand" href="/">DensityPro</a>  
+  <div class="navbar-brand">DensityPro</div>  
 @stop
 
 @section('content') 
@@ -22,5 +22,5 @@
       {{ Form::submit('Sign In', array('class'=>'btn btn-large btn-primary btn-block'))}}
       {{ Form::close() }}
     </div>
-  </div>
+  </div>i
 @stop

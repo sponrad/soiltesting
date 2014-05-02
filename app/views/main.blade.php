@@ -33,24 +33,9 @@
 <!--		<li>{{ HTML::link('/register', 'Register') }}</li>   -->
 		<li>{{ HTML::link('/login', 'Sign In') }}</li>
 	      @else
-		<li><a href="/home">{{ Auth::user()->account->companyname }} Home</a></li>
+		<li><a href="/home"><span class="glyphicon glyphicon-home" ></span> {{ Auth::user()->account->companyname }}</a></li>
 		<li><a href="/settings">Settings</a></li>
 		<li><a href="/logout">Logout</a></li>
-		<!--
-		<li class="dropdown">
-		  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->firstname.' '.Auth::user()->lastname }} <b class="caret"></b></a>
-		  <ul class="dropdown-menu">
-                    <li><a href="/home"><span class="glyphicon glyphicon-home"></span>Home</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li class="dropdown-header">Account</li>
-                    <li><a href="#">Separated link</a></li>
-                    <li><a href="/settings"><span class="glyphicon glyphicon-cog"></span>Settings</a></li>
-		    <li><a href="/logout"><span class="glyphicon glyphicon-off"></span>Logout</a></li>
-		  </ul>
-		</li>
-		-->
 	      @endif
             </ul>
 
@@ -72,12 +57,11 @@
     <footer>
       <div class="container">
 	<p>
-	  DensityPro &copy;<?php echo date("Y"); ?> Devlabtech
-	  <!-- &middot; 
-	  <a href="/privacy">Privacy</a> &middot; 
-	  <a href="/terms">Terms</a> &middot; 
+	  DensityPro &copy;<?php echo date("Y"); ?> Devlabtech &middot; 
+	  <a href="/contact">Contact</a> &middot; 
 	  <a href="/features">Features</a> &middot; 
 	  <a href="/about">About</a>
+<!--    <a href="/privacy">Privacy and Terms</a> &middot; 
 	  -->
 	</p>
       </div>

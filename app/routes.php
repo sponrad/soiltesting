@@ -19,6 +19,10 @@ Route::post('/register', 'UsersController@postCreate');
 
 Route::get('/logout', 'UsersController@getLogout');
 
+Route::get('/about', 'UsersController@getAbout');
+Route::get('/features', 'UsersController@getFeatures');
+Route::get('/contact', 'UsersController@getContact');
+
 Route::get('/home', 'UsersController@getHome');
 Route::post('/home', 'UsersController@postHome');
 
