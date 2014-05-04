@@ -6,7 +6,7 @@
 
 @section('content') 
   <div class="row">
-    <div class="col-md-6 col-md-offset-2">x
+    <div class="col-md-6 col-md-offset-2">
       {{ Form::open(array('url'=>'/login', 'class'=>'form-signin', 'role'=>'form')) }}
       <h2 class="form-signin-heading">Please Sign In</h2>
       
@@ -22,5 +22,5 @@
       {{ Form::submit('Sign In', array('class'=>'btn btn-large btn-primary btn-block'))}}
       {{ Form::close() }}
     </div>
-  </div>i
+  </div>
 @stop
