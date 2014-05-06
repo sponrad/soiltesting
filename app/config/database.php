@@ -4,7 +4,7 @@ return array(
 
 	/*
 	|--------------------------------------------------------------------------
-	| PDO Fetch Style
+	| Pdo Fetch Style
 	|--------------------------------------------------------------------------
 	|
 	| By default, database results will be returned as instances of the PHP
@@ -57,7 +57,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'soiltesting',
 			'username'  => 'root',
-			'password'  => '',
+			'password'  => 'kis',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
