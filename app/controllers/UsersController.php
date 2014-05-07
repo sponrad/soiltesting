@@ -226,15 +226,15 @@ class UsersController extends BaseController {
         }
 
         if ($action == "edittest"){
-            $test->density_wet = Input::get('density_wet');
-            $test->density_dry = Input::get('density_dry');
-            $test->percent_moisture = Input::get('percent_moisture');
-            $proctor = Proctor::find( intval(Input::get('proctor')) );
+            $test->density_wet = Input::get('fdensity_wet');
+            $test->density_dry = Input::get('fdensity_dry');
+            $test->percent_moisture = Input::get('fpercent_moisture');
+            $proctor = Proctor::find( intval(Input::get('fproctor')) );
             $test->proctor()->associate( $proctor );
-            $test->elevation = Input::get('elevation');
-            $test->location = Input::get('location');
-            $test->notes = Input::get('notes');
-            $test->retest_of_number = Input::get('retest') ? Input::get('retest') : null;
+            $test->elevation = Input::get('felevation');
+            $test->location = Input::get('flocation');
+            $test->notes = Input::get('fnotes');
+            $test->retest_of_number = Input::get('fretest') ? Input::get('fretest') : null;
 
             $test->save();
 
