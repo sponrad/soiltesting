@@ -158,6 +158,12 @@
     <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}/tests">Tests</a></li>
   </ul>
 
+  <br>
+  <div class="alert alert-warning alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <span>Caution-Editing numbers will affect tests referencing this Maximum Density</span>
+  </div>
+
   <h1>{{ $editingproctor->name }}</h1>
 
   {{ Form::open(array('url'=>URL::route('postProctor', array($project->id, $project->name, $editingproctor->id )), 'class'=>'form-horizontal', 'role'=>'form')) }}	  
