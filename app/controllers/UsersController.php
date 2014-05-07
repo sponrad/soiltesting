@@ -124,6 +124,9 @@ class UsersController extends BaseController {
     public function postProject($projectId, $projectName){
         $user = Auth::user();
         $project = Project::find($projectId);
+        if ($project->account != $user->account){
+            return Redirect::to("/home");
+        }
 
         $action = Input::get('action');
 
@@ -175,6 +178,9 @@ class UsersController extends BaseController {
         $user = Auth::user();
         $project = Project::find($projectId);
         $action = Input::get("action");
+        if ($project->account != $user->account){
+            return Redirect::to("/home");
+        }
 
         if ($action == "createtest"){
             $user = Auth::user();
@@ -215,6 +221,9 @@ class UsersController extends BaseController {
         $user = Auth::user();
         $project = Project::find($projectId);
         $test = Test::find($testId);
+        if ($project->account != $user->account){
+            return Redirect::to("/home");
+        }
 
         if ($action == "edittest"){
             $test->density_wet = Input::get('density_wet');
@@ -252,6 +261,9 @@ class UsersController extends BaseController {
         $user = Auth::user();
         $project = Project::find($projectId);
         $proctor = Proctor::find($proctorId);
+        if ($project->account != $user->account){
+            return Redirect::to("/home");
+        }
 
         if ($action == "editproctor"){
             $proctor->name = Input::get('name');
