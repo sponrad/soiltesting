@@ -14,6 +14,12 @@
 
 @section('content') 
   <div class="row">
+    @if( Session::get('message') )
+      <div class="alert alert-success alert-dismissable">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      {{ Session::get('message') }}
+      </div>
+    @endif
     <div class="col-md-6 col-md-offset-2">
       {{ Form::open(array('url'=>'/contact', 'class'=>'form-signin', 'role'=>'form')) }}
       <h2 class="form-signin-heading">Contact Form</h2>

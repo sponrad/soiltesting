@@ -6,6 +6,12 @@
 
 @section('content') 
   <div class="row">
+    @if( Session::get('message') )
+      <div class="alert alert-warning alert-dismissable">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      {{ Session::get('message') }}
+      </div>
+    @endif
     <div class="col-md-6 col-md-offset-2">
       {{ Form::open(array('url'=>'/login', 'class'=>'form-signin', 'role'=>'form')) }}
       <h2 class="form-signin-heading">Please Sign In</h2>

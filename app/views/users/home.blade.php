@@ -48,6 +48,13 @@
 @stop
 
 @section('content')
+  @if( Session::get('message') )
+    <div class="alert alert-success alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      {{ Session::get('message') }}
+    </div>
+  @endif
+
   <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="">New Project</button> <br><br>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

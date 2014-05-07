@@ -217,6 +217,17 @@
   </ul>
 
   <div class="row">
+
+    @if( Session::get('message') )
+      <br>
+      <div class="col-md-12">
+	<div class="alert alert-info alert-dismissable">
+	  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	  {{ Session::get('message') }}
+	</div>
+      </div>
+    @endif
+
     <div class="col-md-5">
       <h3>{{ $project->name }}</h3>
       <button class="btn btn-default" data-toggle="modal" data-target="#projectNameModal">Change Project Name</button>

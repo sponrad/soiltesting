@@ -71,7 +71,7 @@ class UsersController extends BaseController {
                 'password'=>Input::get('password')), 
             true)
         ) {
-//            return Redirect::to('users/home')->with('message', 'You are now logged in!');
+//            return Redirect::to('users/home');
             return Redirect::to('/home');
         } else {
             return Redirect::to('/login')
@@ -144,7 +144,7 @@ class UsersController extends BaseController {
         if ($action == "changeprojectname"){
             $project->name = Input::get("projectname");
             $project->save();
-            return Redirect::to('/home/'.$project->id.'-'.$project->name)->with('message', 'Project name changed');
+            return Redirect::to('/home/'.$project->id.'-'.$project->name);
         }
 
         if ($action == "deleteproject"){
@@ -192,7 +192,7 @@ class UsersController extends BaseController {
 
             $test->save();
 
-            return Redirect::to('/home/'.$project->id.'-'.$project->name.'/tests')->with('message', 'Test Added');
+            return Redirect::to('/home/'.$project->id.'-'.$project->name.'/tests');
         }
     }
 
@@ -229,7 +229,7 @@ class UsersController extends BaseController {
 
             $test->save();
 
-            return Redirect::to('/home/'.$project->id.'-'.$project->name.'/tests#test'.$test->number)->with('message', 'Test Edited');
+            return Redirect::to('/home/'.$project->id.'-'.$project->name.'/tests#test'.$test->number)->with('message', 'Edited Test '.$test->number);
         }
     }
 
@@ -332,11 +332,13 @@ class UsersController extends BaseController {
         $password = Input::get('password');
         $password_confirmation = Input::get('password_confirmation');
 
-        if ($password == $password_confirmation && $password != ""){
-            $user->password = Hash::make(Input::get('password'));
-        }
-        else {
-            return Redirect::to('/settings')->with('message', 'Passwords must match');            
+        if ($password != ""){
+            if ($password == $password_confirmation){
+                $user->password = Hash::make(Input::get('password'));
+            }
+            else {
+                return Redirect::to('/settings')->with('message', 'Passwords must match');            
+            }
         }
 
         $user->save();

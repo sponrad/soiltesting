@@ -242,6 +242,15 @@
     <li class="active"><a href="/home/{{ $project->id}}-{{$project->name}}/tests">Tests</a></li>
     <!-- <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}/files">Files</a></li> -->
   </ul>
+
+  @if( Session::get('message') )
+    <br>
+    <div class="alert alert-success alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      {{ Session::get('message') }}
+    </div>
+  @endif
+
   <br>
   @if (count($tests) > 0)
     <table class="table">
