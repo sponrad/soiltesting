@@ -203,8 +203,7 @@
 		@if(!Auth::check())
                 <li class="active"><a href="/login">Sign In</a></li>		
 		@else
-		<li><a href="/home"><span class="glyphicon glyphicon-home" ></span> {{ Auth::user()->account->companyname }}</a></li>
-                <li class="active"><a href="/home">Home</a></li>
+		<li class="active"><a href="/home"><span class="glyphicon glyphicon-home" ></span> {{ Auth::user()->account->companyname }}</a></li>
                 <li class="active"><a href="/logout">Logout</a></li>
 		@endif
 		<!--                <li><a href="#">Features</a></li>
