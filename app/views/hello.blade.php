@@ -216,7 +216,11 @@
             <h1 class="cover-heading">Density Test Software</h1>
             <p class="lead">Density test organization and storage in the cloud for soil engineers and soil technicians.</p>
 	    <p class="lead">
+	      @if(!Auth::check())
 	      <a class="btn btn-primary btn-lg" href="/register">Register</a>
+	      @else
+	      <span>Thank you for signing up</span>
+	      @endif
 	    </p>
           </div>
 
@@ -235,7 +239,8 @@
               <span>&copy;2013-<?php echo date("Y"); ?> Devlabtech </span>&middot; 
 	      <a href="/contact">Contact</a> &middot; 
 	      <a href="/features">Features</a> &middot; 
-	      <a href="/about">About</a>
+	      <a href="/about">About</a> &middot; 
+	      <a href="/help">Help</a> 
             </div>
           </div>
 

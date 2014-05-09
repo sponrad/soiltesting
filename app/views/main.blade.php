@@ -61,7 +61,8 @@
 	  DensityPro &copy;2013-<?php echo date("Y"); ?> Devlabtech &middot; 
 	  <a href="/contact">Contact</a> &middot; 
 	  <a href="/features">Features</a> &middot; 
-	  <a href="/about">About</a>
+	  <a href="/about">About</a> &middot; 
+	  <a href="/help">Help</a> 
 <!--    <a href="/privacy">Privacy and Terms</a> &middot; 
 	  -->
 	</p>
