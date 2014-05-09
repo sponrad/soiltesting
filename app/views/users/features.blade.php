@@ -17,10 +17,13 @@
       <p><span class="glyphicon glyphicon-ok"></span> Enter notes for a job, these notes stay in one place and are easy to access</p>
       <p><span class="glyphicon glyphicon-ok"></span> Add notes for individual tests</p>
       <p><span class="glyphicon glyphicon-ok"></span> Export data into csv format which can be loaded to popular spreadsheet programs like Microsoft Excel.</p>
-
+      <p><span class="glyphicon glyphicon-ok"></span> Unit agnostic, works with US and metric units</>p
+      <p><span class="glyphicon glyphicon-ok"></span> Calculates wet density, dry density, percent moisture, and percent relative compaction when values are entered</p>
       <!--       <p><span class="glyphicon glyphicon-ok"></span> </p>  -->
       @if( !Auth::check() )
-	<a class="btn btn-primary btn-lg" href="/register">Register</a>
+	<p>
+	  <a class="btn btn-primary btn-lg" href="/register">Register</a>
+	</p>
       @endif
     </div>
   </div>

@@ -30,6 +30,7 @@
             <ul class="nav navbar-nav navbar-right">
 	      @yield('navmenu')
               @if(!Auth::check())
+		<li><a href="/">Home</a></li>
 <!--		<li>{{ HTML::link('/register', 'Register') }}</li>   -->
 		<li>{{ HTML::link('/login', 'Sign In') }}</li>
 	      @else
@@ -57,7 +58,7 @@
     <footer>
       <div class="container">
 	<p>
-	  DensityPro &copy;<?php echo date("Y"); ?> Devlabtech &middot; 
+	  DensityPro &copy;2013-<?php echo date("Y"); ?> Devlabtech &middot; 
 	  <a href="/contact">Contact</a> &middot; 
 	  <a href="/features">Features</a> &middot; 
 	  <a href="/about">About</a>

@@ -48,6 +48,7 @@
        background-repeat: no-repeat;
        background-size: cover;
        background-position: center;
+       background-attachement: fixed;
        width: 100%;
        height: 100%;
 
@@ -200,9 +201,9 @@
               <h3 class="masthead-brand" style="font-family: Lucida Sans Unicode;">DensityPro</h3>
               <ul class="nav masthead-nav">
 		@if(!Auth::check())
-                <li class="active"><a href="#">Home</a></li>
                 <li class="active"><a href="/login">Sign In</a></li>		
 		@else
+		<li><a href="/home"><span class="glyphicon glyphicon-home" ></span> {{ Auth::user()->account->companyname }}</a></li>
                 <li class="active"><a href="/home">Home</a></li>
                 <li class="active"><a href="/logout">Logout</a></li>
 		@endif
@@ -232,7 +233,7 @@
 
           <div class="mastfoot">
             <div class="inner">
-              <span>&copy; 2014 Devlabtech </span>&middot; 
+              <span>&copy;2013-<?php echo date("Y"); ?> Devlabtech </span>&middot; 
 	      <a href="/contact">Contact</a> &middot; 
 	      <a href="/features">Features</a> &middot; 
 	      <a href="/about">About</a>
