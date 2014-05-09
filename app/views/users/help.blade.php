@@ -23,6 +23,7 @@
 	<li><a href="#addprojectnotes">Make Project Notes</a></li>
 	<li><a href="#editmaximumdensity">Edit A Maximum Density</a></li>
 	<li><a href="#deleteproject">Delete A Project</a></li>
+	<li><a href="#exportdata">Export Project Data</a></li>
       </ul>
     </div>
 
@@ -103,6 +104,18 @@
       <p>Do this</p>
       
       <h2 id="deleteproject">Delete a Project</h2>
+      <p>Do this</p>
+      <p>Do this</p>
+      <p>Do this</p>
+      <p>Do this</p>
+      <p>Do this</p>
+      <p>Do this</p>
+      <p>Do this</p>
+      <p>Do this</p>
+      <p>Do this</p>
+      <p>Do this</p>
+
+      <h2 id="exportdata">Export Project Data</h2>
       <p>Do this</p>
       <p>Do this</p>
       <p>Do this</p>
