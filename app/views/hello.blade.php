@@ -214,20 +214,28 @@
 
           <div class="inner cover">
             <h1 class="cover-heading">Density Test Software</h1>
-            <p class="lead">Density test organization and cloud storage for soil engineers and soil technicians.</p>
-	    <p>Digitize density tests as they are taken in the field.</p>
-	    <p>Store data and files for multiple projects.</p>
-	    <p>Access density test data any time from any device.</p><br>
-	    <p>Offered with simple payment plans and built with secure technology used by major companies worldwide.</p>
+            <p class="lead">Density test organization and storage in the cloud for soil engineers and soil technicians.</p>
 	    <p class="lead">
-	      <span class="">Contact conrad@devlabtech.com for more information</span>
+	      <a class="btn btn-primary btn-lg" href="/register">Register</a>
 	    </p>
-	    <p>Currently in developement.</p>
           </div>
+
+	  <div class="row marketing">
+	    <div class="col lg-6" style="text-align: left;">
+	      <p><span class="glyphicon glyphicon-ok"></span> Digitize density tests as they are taken in the field.</p>
+	      <p><span class="glyphicon glyphicon-ok"></span> Store data and files for multiple projects.</p>
+	      <p><span class="glyphicon glyphicon-ok"></span> Access density test data any time from any device.</p>
+	      <p><span class="glyphicon glyphicon-ok"></span> Offered with simple payment plans and built with secure technology used by major companies worldwide.</p>
+	      <p>Currently in free and open beta.</p>
+	    </div>
+	  </div>
 
           <div class="mastfoot">
             <div class="inner">
-              <p>&copy; 2014 Devlabtech <!-- <br> <small>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</small> --></p>
+              <span>&copy; 2014 Devlabtech </span>&middot; 
+	      <a href="/contact">Contact</a> &middot; 
+	      <a href="/features">Features</a> &middot; 
+	      <a href="/about">About</a>
             </div>
           </div>
 
