@@ -211,8 +211,8 @@
        });
 
      $("#fproctorInput").change( function(){
-       compaction_percent = $("#density_dry").val() / $("#fproctorInput").find(":selected").attr("id") * 100;
-       $("#fcompaction_percent").val(compaction_percent.toFixed(1));
+       fcompaction_percent = $("#fdensity_dry").val() / $("#fproctorInput").find(":selected").attr("id") * 100;
+       $("#fcompaction_percent").val(fcompaction_percent.toFixed(1));
      });
 
    });
