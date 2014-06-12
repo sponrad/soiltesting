@@ -286,8 +286,6 @@ class UsersController extends BaseController {
         $proctors = Proctor::where("project_id", "=", $project->id)->get();
         $tests = Test::where("project_id", "=", $project->id)->orderBy("number", "DESC")->get();
 
-        $file = fopen('file.csv', 'w');
-
         $output = "";
 
         $output.= $project->name."\r\n".$project->account->companyname."\r\n";
