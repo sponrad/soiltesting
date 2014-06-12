@@ -4,6 +4,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Digitize density tests in the field and store in the cloud"/>
+    <meta name="keywords" content="soil testing, density test software, geotechnical engineering, soil technician, cloud storage, construction testing"/>
     <title>DensityPro</title>
     {{ HTML::style('/css/bootstrap.min.css') }}
     {{ HTML::style('/css/main.css') }}
@@ -31,8 +33,7 @@
             <ul class="nav navbar-nav navbar-right">
 	      @yield('navmenu')
               @if(!Auth::check())
-		<li><a href="/">Home</a></li>
-<!--		<li>{{ HTML::link('/register', 'Register') }}</li>   -->
+		<li>{{ HTML::link('/register', 'Register') }}</li> 
 		<li>{{ HTML::link('/login', 'Sign In') }}</li>
 	      @else
 		<li><a href="/home"><span class="glyphicon glyphicon-home" ></span> {{ Auth::user()->account->companyname }}</a></li>
