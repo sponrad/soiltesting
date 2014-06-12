@@ -219,7 +219,7 @@
 	      @if(!Auth::check())
 	      <a class="btn btn-primary btn-lg" href="/register">Register</a>
 	      @else
-	      <span>Thank you for signing up</span>
+	      <a class="btn btn-primary btn-lg" href="/home">Home</a>
 	      @endif
 	    </p>
           </div>

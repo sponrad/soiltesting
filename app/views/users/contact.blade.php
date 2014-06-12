@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('brandlink')
-  <div class="navbar-brand">DensityPro</div>  
+  <a class="navbar-brand" href="/">DensityPro</a>
 @stop
 
 @section('underbody') 
