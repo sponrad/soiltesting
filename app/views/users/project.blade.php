@@ -341,6 +341,7 @@
 	  <div class="form-group">
 	    <div class="col-sm-offset-4 col-sm-8">
 	      {{ Form::submit('Add Maximum Density', array('class'=>'btn btn-large btn-primary')) }}
+	      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 	    </div>
 	  </div>
 	  {{ Form::close() }}

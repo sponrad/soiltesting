@@ -72,7 +72,8 @@
 	  </div>
 	  
 	  <div class="form-group">
-	  {{ Form::submit('Create', array('class'=>'btn btn-large btn-primary')) }}
+	    {{ Form::submit('Create', array('class'=>'btn btn-large btn-primary')) }}
+	    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 	  </div>
 	  {{ Form::close() }}
 	</div>
