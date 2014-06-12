@@ -6,7 +6,7 @@
 
 @section('content') 
   <div class="row">
-    <div class="col-md-6 col-md-offset-2">
+    <div class="col-md-6 col-md-offset-3">
       <h1 class="cover-heading">Density Test Software</h1>
       <p class="lead">Digitize density tests in the field and store them in the cloud</p>
       <p class="lead" style="text-align: center;">
