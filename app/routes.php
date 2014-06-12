@@ -67,4 +67,5 @@ Route::get('/json/login', function(){ return View::make('jsonLogin'); });
 
 Route::post('/editable', 'UsersController@postEditable');
 
-Route::get('/', function(){ return View::make('hello'); });
+Route::get('/old', function(){ return View::make('hello'); });
+Route::get('/', function(){ return View::make('landing'); });

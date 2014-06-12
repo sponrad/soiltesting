@@ -5,5 +5,5 @@
 @stop
 
 @section('content') 
-  
+Landing  
 @stop
