@@ -44,7 +44,7 @@ class UsersController extends BaseController {
         
         if ($trap == ""){
             Mail::send('emails.contact_form', array('email'=>$email, 'mess'=>$mess), function($message) use ($subject){
-            $message->to("conrad@odevlabtech.com")->subject($subject);
+            $message->to("conrad@devlabtech.com")->subject($subject);
         }
             );
         }
