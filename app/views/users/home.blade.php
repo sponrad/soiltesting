@@ -24,7 +24,7 @@
      padding: 15px;
      margin: 5px;
      border: solid 1px gray;
-     background: #eeeeff;
+     background: #E0EAF4;
      float: left;
      position: relative;
      border-radius: 10px;
@@ -37,8 +37,8 @@
    }
    a.projectLink:active{
      text-decoration: none;
-     backround-color: #aaaabb;
-     background: #aaaabb;
+     backround-color: #eeeeff;
+     background: #eeeeff;
      color: white;    
    }
    .testDiv{     
@@ -85,11 +85,13 @@
     @foreach($projects as $key => $project)
       <div class="projectBox">
 	<a class="projectLink" href="/home/{{ $project->id }}-{{ $project->name }}">
-	  {{ $project->name }}
+	  {{ $project->name}}
 	  <br><br>
 	  @if ($project->tests->count() > 0)
 	  <p class="testDiv">{{ $project->tests->count()}} Tests</p>
-	  <p class="testDiv">Latest: {{ $project->tests->last()->created_at->format('n/d/y H:i')  }}</p>
+	  <p class="testDiv">Latest: {{ $project->tests->last()->created_at->format('n/d/y')  }}</p>
+	  @else
+	  <p>No tests yet</p>
 	  @endif
 	</a>
       </div>

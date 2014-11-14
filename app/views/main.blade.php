@@ -17,7 +17,7 @@
   <body>
 
     <div id="wrap">
-      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -36,7 +36,7 @@
 		<li>{{ HTML::link('/register', 'Register') }}</li> 
 		<li>{{ HTML::link('/login', 'Sign In') }}</li>
 	      @else
-		<li><a href="/home"><span class="glyphicon glyphicon-home" ></span> {{ Auth::user()->account->companyname }}</a></li>
+		<li><a href="/home"><span class="glyphicon glyphicon-home" ></span> Projects</a></li>
 		<li><a href="/settings">Settings</a></li>
 		<li><a href="/logout">Logout</a></li>
 	      @endif
