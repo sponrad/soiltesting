@@ -26,30 +26,14 @@
 	<!-- Wrapper for slides -->
 	<div class="carousel-inner">
 	  <div class="item active">
-	    <img src="/images/dp-home.png" alt="Project Selection">
+	    <img src="/images/image002re.jpg" alt="Project Selection">
 	    <div class="carousel-caption">
-	      Supports Multiple Projects
 	    </div>
 	  </div>
 
 	  <div class="item">
-	    <img src="/images/dp-project.png" alt="Project Overview">
+	    <img src="/images/image003re.jpg" alt="Project Overview">
 	    <div class="carousel-caption">
-	      Project Overview
-	    </div>
-	  </div>
-
-	  <div class="item">
-	    <img src="/images/dp-tests.png" alt="Test Table">
-	    <div class="carousel-caption">
-	      Test Listing Page
-	    </div>
-	  </div>
-
-	  <div class="item">
-	    <img src="/images/dp-taketest.png" alt="Record a Density Test">
-	    <div class="carousel-caption">
-	      Record a Test From any Screen
 	    </div>
 	  </div>
 	</div>
