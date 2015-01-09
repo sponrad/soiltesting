@@ -60,12 +60,12 @@
     <footer>
       <div class="container">
 	<p>
-	  DensityPro &copy;2013-<?php echo date("Y"); ?> Devlabtech &middot; 
+	  DensityPro &copy;2014-<?php echo date("Y"); ?> Devlabtech &middot; 
 	  <a href="/contact">Contact</a> &middot; 
 	  <a href="/features">Features</a> &middot; 
 	  <a href="/about">About</a> &middot; 
 	  <a href="/help">Help</a> 
-<!--    <a href="/privacy">Privacy and Terms</a> &middot; 
+          <!--    <a href="/privacy">Privacy and Terms</a> &middot; 
 	  -->
 	</p>
       </div>

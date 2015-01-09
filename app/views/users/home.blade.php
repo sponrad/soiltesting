@@ -11,40 +11,17 @@
 
 @section('underbody')
   <style>
-   .projectBox{
-     text-align: center;
-   }
-   a.projectLink{
-     color: black;
-     display: inline-block;
-     max-width: 150px;
-     min-width: 50px; 
-     width: 40%;
-     height: 150px;
-     padding: 15px;
-     margin: 5px;
-     border: solid 1px gray;
-     background: #E0EAF4;
-     float: left;
-     position: relative;
-     border-radius: 10px;
-   }
-   a.projectLink:hover{
-     text-decoration: none;
-     backround-color: #428bca;
-     background: #428bca;
-     color: white;    
-   }
-   a.projectLink:active{
-     text-decoration: none;
-     backround-color: #eeeeff;
-     background: #eeeeff;
-     color: white;    
-   }
-   .testDiv{     
-     font-size: 85%;
+   .table tbody > tr{
+     cursor: pointer;
    }
   </style>
+  <script>
+   $(document).ready( function(){
+     $('.table tbody > tr').click(function(e) {
+       window.location.replace($(this).data("href"));
+     });
+   });
+  </script>
 @stop
 
 @section('content')
@@ -82,19 +59,29 @@
   </div>
   
   @if (count($projects) > 0)
-    @foreach($projects as $key => $project)
-      <div class="projectBox">
-	<a class="projectLink" href="/home/{{ $project->id }}-{{ $project->name }}">
-	  {{ $project->name}}
-	  <br><br>
-	  @if ($project->tests->count() > 0)
-	  <p class="testDiv">{{ $project->tests->count()}} Tests</p>
-	  <p class="testDiv">Latest: {{ $project->tests->last()->created_at->format('n/d/y')  }}</p>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Project</th>
+          <th>Tests</th>
+          <th>Last Tested</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @foreach($projects as $key => $project)
+          <tr data-href="/home/{{ $project->id }}-{{ $project->name }}">
+            <td>{{ $project->name}}</td>
+	    @if ($project->tests->count() > 0)
+            <td>{{ $project->tests->count()}}</td>
+            <td>{{ $project->tests->last()->created_at->format('n/d/y')  }}</td>
 	  @else
-	  <p>No tests yet</p>
+            <td></td>
+            <td></td>
 	  @endif
-	</a>
-      </div>
-    @endforeach
+        @endforeach
+      </tbody>
+    </table>
   @endif
 @stop
+
