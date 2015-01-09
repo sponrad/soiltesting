@@ -36,7 +36,6 @@
 		<li>{{ HTML::link('/register', 'Register') }}</li> 
 		<li>{{ HTML::link('/login', 'Sign In') }}</li>
 	      @else
-		<li><a href="/home"><span class="glyphicon glyphicon-home" ></span> Projects</a></li>
 		<li><a href="/settings">Settings</a></li>
 		<li><a href="/logout">Logout</a></li>
 	      @endif

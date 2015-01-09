@@ -89,7 +89,7 @@ class UsersController extends BaseController {
 
     public function getHome(){
         $user = Auth::user();
-        $projects = Project::where("account_id", "=", $user->account->id)->get()->sortBy('name');
+        $projects = Project::where("account_id", "=", $user->account->id)->get()->sortBy('-updated_at');
         return View::make('users.home')->with(
             array(
                 'projects' => $projects
@@ -271,7 +271,7 @@ class UsersController extends BaseController {
             $test->retest_of_number = Input::get('fretest') ? Input::get('fretest') : null;
 
             $test->save();
-
+            $project->touch();
             return Redirect::to('/home/'.$project->id.'-'.$project->name.'/tests#test'.$test->number)->with('message', 'Edited Test '.$test->number);
         }
     }
@@ -419,10 +419,12 @@ class UsersController extends BaseController {
         case "testnotes":
             $entity = Test::find(intval($inputs['pk']));
             $entity->$inputs['name'] = $inputs['value'];
+            $entity->project()->touch();
             break;
         case "projectnotes":
             $entity = Project::find(intval($inputs['pk']));
             $entity->$inputs['name'] = $inputs['value'];
+            $entity->touch();
             break;
         }
         return strval($entity->save());

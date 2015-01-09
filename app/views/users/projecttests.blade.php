@@ -24,9 +24,8 @@
      padding: 0px 5px 0px 5px !important;
    }
    #tableHead th{
-     background: #d2322d;
-     color: white;
      border-top: gray 1px solid;
+     background: none;
    }
    #tableHead th:first-child{
      border-left: gray 1px solid;
@@ -38,13 +37,15 @@
      background: #fafafa;
    }
    tr.even td {
-     background: #eeefbe;
+     background: #f7f7f7;
    }
    tr.even:hover, tr.odd:hover{
      cursor: pointer;
    }
    tr.even:hover td, tr.odd:hover td{
-     background: #ffff66;
+   }
+   tr.noborder{
+     background: white;
    }
    .notes {
      border: dashed 2px #cc8;
@@ -117,9 +118,9 @@
 
   <br><br>
   @if (count($tests) > 0)
-    <table class="table">
+    <table class="table table-hover table-striped">
       <tr id="tableHead">
-	<th> No.</th>
+	<th> #</th>
 	<th title="Location of Test">Loc.</th>
 	<th title="Dry Density">Dry Dens.</th>
 	<th title="Percent Moisture">m%</th>
@@ -128,7 +129,7 @@
       </tr>
       @foreach($tests as $key => $test)
 	@if ($key % 2 == 0)
-	<tr name="test{{$test->number}}" data-toggle="collapse" data-target="#demo{{$key}}" class="accordion-toggle odd" title="Click or tap to see more details">
+	<tr name="test{{$test->number}}" data-toggle="collapse" data-target="#demo{{$key}}" class="accordion-toggle" title="Click or tap to see more details">
 	@else
 	<tr data-toggle="collapse" data-target="#demo{{$key}}" class="accordion-toggle even" title="Click or tap to see more details">
 	@endif

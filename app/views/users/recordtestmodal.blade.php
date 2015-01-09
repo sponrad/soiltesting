@@ -37,7 +37,7 @@
 	  <div class="col-sm-4">
 	    <select class="form-control" name="proctor" id="proctorInput">
 	      @foreach($proctors as $key => $proctor)
-		<option id="{{ number_format($proctor->density_dry, 1) }}" value="{{$proctor->id}}">{{ number_format($proctor->density_dry, 1) }} @ {{ number_format($proctor->percent_moisture, 1) }}% - {{$proctor->name}}</option>
+		<option id="{{ number_format($proctor->density_dry, 1) }}" value="{{$proctor->id}}" title="{{ $proctor->description }}" >{{ number_format($proctor->density_dry, 1) }} @ {{ number_format($proctor->percent_moisture, 1) }}% - {{$proctor->name}}</option>
 	      @endforeach
 	    </select>
 	  </div>
