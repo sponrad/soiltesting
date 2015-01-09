@@ -36,6 +36,9 @@ Route::get('/home/{projectId}-{projectName}/export', 'UsersController@getProject
 Route::get('/home/{projectId}-{projectName}/tests', 'UsersController@getProjectTests');
 Route::post('/home/{projectId}-{projectName}/tests', 'UsersController@postProjectTests');
 
+Route::get('/home/{projectId}-{projectName}/proctors', 'UsersController@getProjectProctors');
+Route::post('/home/{projectId}-{projectName}/proctors', 'UsersController@postProjectProctors');
+
 Route::get('/home/{projectId}-{projectName}/test/{testId}', array(
     'as'=>'getTest',
     'uses'=>'UsersController@getTest'

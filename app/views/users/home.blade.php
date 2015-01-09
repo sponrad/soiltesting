@@ -70,7 +70,7 @@
 
       <tbody>
         @foreach($projects as $key => $project)
-          <tr data-href="/home/{{ $project->id }}-{{ $project->name }}">
+          <tr data-href="/home/{{ $project->id }}-{{ $project->name }}/tests">
             <td>{{ $project->name}}</td>
 	    @if ($project->tests->count() > 0)
             <td>{{ $project->tests->count()}}</td>

@@ -13,6 +13,8 @@ class UsersController extends BaseController {
             'postSettings',
             'getProjectTests',
             'postProjectTests',
+            'getProjectProctors',
+            'postProjectProctors',
             'getProjectFiles',
             'postProjectFiles',
             'postEditable',
@@ -201,6 +203,38 @@ class UsersController extends BaseController {
             return Redirect::to('/home/'.$project->id.'-'.$project->name.'/tests');
         }
     }
+
+    public function getProjectProctors($projectId, $projectName){
+        $user = Auth::user();
+        $project = Project::find($projectId);
+        $tests = Test::where("project_id", "=", $project->id)->orderBy("number", "DESC")->get();
+        $proctors = Proctor::where("project_id", "=", $project->id)->get();
+        
+        return View::make('users.projectproctors')->with(
+            array(
+                "project" => $project,
+                "tests" => $tests,
+                "proctors" => $proctors,
+            ));
+    }
+
+    public function postProjectProctors($projectId, $projectName){
+        $user = Auth::user();
+        $project = Project::find($projectId);
+
+        $proctor = new Proctor;
+        $proctor->project()->associate($project);
+        $proctor->name = Input::get('name');
+        $proctor->description = Input::get('description');
+        //$proctor->date = Input::get('date');
+        $proctor->density_dry = Input::get('density_dry');
+        $proctor->percent_moisture = Input::get('percent_moisture');
+        $proctor->density_wet = $proctor->density_dry * (1 + $proctor->percent_moisture/100);
+        $proctor->save();
+
+        return Redirect::to('/home/'.$project->id.'-'.$project->name.'/proctors')->with('message', 'Maximum Density Added');
+    }
+    
 
     public function getTest($projectId, $projectName, $testId){
         $user = Auth::user();

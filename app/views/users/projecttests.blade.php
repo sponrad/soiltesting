@@ -98,9 +98,9 @@
 
 @section('content')
   <ul class="nav nav-tabs">
-    <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}">Overview</a></li>
     <li class="active"><a href="/home/{{ $project->id}}-{{$project->name}}/tests">Tests</a></li>
-    <!-- <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}/files">Files</a></li> -->
+    <li><a href="/home/{{ $project->id}}-{{$project->name}}/proctors">Proctors</a></li>    
+    <li><a href="/home/{{ $project->id}}-{{$project->name}}">Other</a></l>
   </ul>
 
   @if( Session::get('message') )
@@ -112,6 +112,10 @@
   @endif
 
   <br>
+
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-check"></span> Record Test</button>
+
+  <br><br>
   @if (count($tests) > 0)
     <table class="table">
       <tr id="tableHead">
