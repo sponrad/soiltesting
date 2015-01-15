@@ -36,7 +36,7 @@ html {
     background: #F7F6F4;
     border: none;
     border-bottom: 1px solid #B4A28F;
-  border-top: 3px solid #7C7062;
+/*    border-top: 3px solid #7C7062; */
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
