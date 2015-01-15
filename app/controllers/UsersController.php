@@ -89,7 +89,7 @@ class UsersController extends BaseController {
 
     public function getHome(){
         $user = Auth::user();
-        $projects = Project::where("account_id", "=", $user->account->id)->get()->sortBy('-updated_at');
+        $projects = Project::where("account_id", "=", $user->account->id)->orderBy('updated_at', 'DESC')->get();
         return View::make('users.home')->with(
             array(
                 'projects' => $projects
@@ -231,6 +231,7 @@ class UsersController extends BaseController {
         $proctor->percent_moisture = Input::get('percent_moisture');
         $proctor->density_wet = $proctor->density_dry * (1 + $proctor->percent_moisture/100);
         $proctor->save();
+        $project->touch();
 
         return Redirect::to('/home/'.$project->id.'-'.$project->name.'/proctors')->with('message', 'Maximum Density Added');
     }

@@ -20,6 +20,10 @@
      $('.table tbody > tr').click(function(e) {
        window.location.replace($(this).data("href"));
      });
+
+     $('#myModal').on('shown.bs.modal', function () {
+       $("#projectname").focus();
+     })
    });
   </script>
 @stop
@@ -32,7 +36,7 @@
     </div>
   @endif
 
-  <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="">New Project</button> <br><br>
+  <button class="btn btn-primary" id="new-project" data-toggle="modal" data-target="#myModal" style="">New Project</button> <br><br>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -45,7 +49,7 @@
 	  {{ Form::hidden('action', 'createproject') }}
 	  <div class="form-group">
 	    <label for="projectname">Project Name</label>
-	    {{ Form::text('projectname', null, array('class'=>'input-block-level', 'placeholder'=>'Project Name')) }}
+	    {{ Form::text('projectname', null, array('class'=>'input-block-level', 'placeholder'=>'Project Name', 'id'=>'projectname')) }}
 	  </div>
 	  
 	  <div class="form-group">
@@ -71,17 +75,18 @@
       <tbody>
         @foreach($projects as $key => $project)
           <tr data-href="/home/{{ $project->id }}-{{ $project->name }}/tests">
-            <td>{{ $project->name}}</td>
+            <td>{{ $project->updated_at }} {{ $project->name}}</td>
 	    @if ($project->tests->count() > 0)
-            <td>{{ $project->tests->count()}}</td>
-            <td>{{ $project->tests->last()->created_at->format('n/d/y')  }}</td>
-	  @else
-            <td></td>
-            <td></td>
-	  @endif
+              <td>{{ $project->tests->count()}}</td>
+              <td>{{ $project->tests->last()->created_at->format('n/d/y')  }}</td>
+	    @else
+              <td></td>
+              <td></td>
+	    @endif
         @endforeach
       </tbody>
     </table>
+
   @endif
 @stop
 
