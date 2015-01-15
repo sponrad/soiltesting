@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('brandlink')
-  <div class="navbar-brand">{{ Auth::user()->account->companyname }}</div>
+  <a class="navbar-brand" href="/home">{{ Auth::user()->account->companyname }}</a>
 @stop
 
 @section('underbody')

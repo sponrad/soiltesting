@@ -8,7 +8,6 @@
 @stop
 
 @section('navmenu')
-  <li><button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-check"></span> Record Test</button></li>
 @stop
 
 @section('underbody')
@@ -17,14 +16,15 @@
 
 @section('content')
   <ul class="nav nav-tabs">
-    <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}">Overview</a></li>
-    <li class=""><a href="/home/{{ $project->id}}-{{$project->name}}/tests">Tests</a></li>
+    <li><a href="/home/{{ $project->id}}-{{$project->name}}/tests">Tests</a></li>
+    <li><a href="/home/{{ $project->id}}-{{$project->name}}/proctors">Proctors</a></li>    
+    <li><a href="/home/{{ $project->id}}-{{$project->name}}">Other</a></l>
   </ul>
 
   <br>
   <div class="alert alert-warning alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <span>Caution-Editing numbers will affect tests referencing this Maximum Density</span>
+    <span>Editing numbers will affect tests referencing this Maximum Density</span>
   </div>
 
   <h1>{{ $editingproctor->name }}</h1>
