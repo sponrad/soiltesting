@@ -75,7 +75,7 @@
       <tbody>
         @foreach($projects as $key => $project)
           <tr data-href="/home/{{ $project->id }}-{{ $project->name }}/tests">
-            <td>{{ $project->updated_at }} {{ $project->name}}</td>
+            <td>{{ $project->name}}</td>
 	    @if ($project->tests->count() > 0)
               <td>{{ $project->tests->count()}}</td>
               <td>{{ $project->tests->last()->created_at->format('n/d/y')  }}</td>
