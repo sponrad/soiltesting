@@ -1,7 +1,11 @@
 @extends('main')
 
 @section('brandlink')
-  <a class="navbar-brand" href="/">DensityPro</a>
+  @if (Auth::check())
+    <a class="navbar-brand" href="/home">DensityPro</a>
+  @else
+    <a class="navbar-brand" href="/">DensityPro</a>
+  @endif
 @stop
 
 @section('content') 

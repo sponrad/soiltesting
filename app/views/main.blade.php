@@ -9,6 +9,7 @@
     <title>DensityPro</title>
     {{ HTML::style('/css/bootstrap.min.css') }}
     {{ HTML::style('/css/main.css') }}
+    <link href="/js/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
     <link href="/css/pace.css" rel="stylesheet">
     <link rel="shortcut icon" href="/favicon.ico" />
     @yield('underheader')
