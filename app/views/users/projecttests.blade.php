@@ -113,7 +113,14 @@
 
   <br>
 
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-check"></span> Record Test</button>
+  @if($project->proctors->isEmpty())
+    <div class="alert alert-warning alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <span>Add a maximum density on the Proctors tab before taking a test</span>
+    </div>
+  @else
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-check"></span> Record Test</button>
+  @endif
 
   <br><br>
   @if (count($tests) > 0)

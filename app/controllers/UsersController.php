@@ -192,7 +192,9 @@ class UsersController extends BaseController {
             $test->density_dry = Input::get('density_dry');
             $test->percent_moisture = Input::get('percent_moisture');
             $proctor = Proctor::find( intval(Input::get('proctor')) );
-            $test->proctor()->associate( $proctor );
+            if ($proctor){
+                $test->proctor()->associate( $proctor );
+            }
             $test->elevation = Input::get('elevation');
             $test->location = Input::get('location');
             $test->notes = Input::get('notes');
@@ -226,7 +228,6 @@ class UsersController extends BaseController {
         $proctor->project()->associate($project);
         $proctor->name = Input::get('name');
         $proctor->description = Input::get('description');
-        //$proctor->date = Input::get('date');
         $proctor->density_dry = Input::get('density_dry');
         $proctor->percent_moisture = Input::get('percent_moisture');
         $proctor->density_wet = $proctor->density_dry * (1 + $proctor->percent_moisture/100);
@@ -265,7 +266,9 @@ class UsersController extends BaseController {
             $test->density_dry = Input::get('fdensity_dry');
             $test->percent_moisture = Input::get('fpercent_moisture');
             $proctor = Proctor::find( intval(Input::get('fproctor')) );
-            $test->proctor()->associate( $proctor );
+            if ($proctor){
+                $test->proctor()->associate( $proctor );                
+            }
             $test->elevation = Input::get('felevation');
             $test->location = Input::get('flocation');
             $test->notes = Input::get('fnotes');

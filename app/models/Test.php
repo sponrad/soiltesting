@@ -11,8 +11,13 @@ class Test extends Eloquent{
         return $this->belongsTo('Project', 'project_id');
     }
 
-    public function percent_compaction(){        
-        return $this->density_dry / $this->proctor->density_dry * 100;
+    public function percent_compaction(){
+        if ($this->proctor){
+            return $this->density_dry / $this->proctor->density_dry * 100;
+        }
+        else{
+            return 0;
+        }
     }
 
 }
