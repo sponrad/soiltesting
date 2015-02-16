@@ -56,7 +56,7 @@
       <p class="lead" style="text-align: center;">
 	@if(!Auth::check())
 	  <a class="btn btn-primary btn-lg" href="/register">Register</a>
-	  <a class="btn btn-lg" href="/login">Sign In</a>
+	  <a class="btn btn-lg btn-default" href="/login">Sign In</a>
 	@else
 	  <a class="btn btn-primary btn-lg" href="/home">Home</a>
 	@endif

@@ -57,7 +57,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'soiltesting',
 			'username'  => 'root',
-			'password'  => '',
+			'password'  => 'kis',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

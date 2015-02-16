@@ -1,6 +1,5 @@
 <!doctype html>
 <html>
-
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,7 +74,6 @@
     <script src="/js/jquery1.10.2.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
-    <script src="/js/pace.js"></script>
     <script>
      $(document).ready( function() {
      });
